@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn, FaKaggle } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { personalInfo } from '../utils/data';
 
@@ -80,9 +80,6 @@ export default function About() {
               <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="about-social-link" aria-label="LinkedIn">
                 <FaLinkedinIn />
               </a>
-              <a href={personalInfo.kaggle} target="_blank" rel="noopener noreferrer" className="about-social-link" aria-label="Kaggle">
-                <FaKaggle />
-              </a>
               <a href={`mailto:${personalInfo.email}`} className="about-social-link" aria-label="Email">
                 <HiOutlineMail />
               </a>
@@ -98,10 +95,21 @@ export default function About() {
           >
             <h2 className="about-heading">About Me</h2>
             <div className="about-heading-line" />
-            <p className="about-text">{personalInfo.about}</p>
+            <p className="about-text">
+I'm Vijay Vardhan Reddy, a 3rd-year B.Tech Big Data student 
+at NIIT University. I spend most of my time building things 
+that go beyond what's expected from a student — a real-time 
+F1 strategy engine, a brain activation visualizer using 2025 
+AI research, and a full IPL analytics pipeline. I like finding 
+real problems and building real solutions for them.
+
+My toolkit: Python, SQL, Power BI, React, FastAPI, Redis, 
+Three.js. I'm actively looking for a Data Analyst or AI/ML 
+internship where I can contribute from day one.
+            </p>
             <div className="about-badges">
               <span className="about-badge about-badge-teal">Open to Internships</span>
-              <span className="about-badge about-badge-blue">Available from {personalInfo.availableFrom}</span>
+              <span className="about-badge about-badge-blue">{personalInfo.availableFrom}</span>
             </div>
           </motion.div>
         </div>

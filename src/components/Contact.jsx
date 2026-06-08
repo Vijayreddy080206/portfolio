@@ -1,7 +1,6 @@
 import React, { memo, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import emailjs from '@emailjs/browser';
 import {
   IoMailSharp,
   IoLogoLinkedin,
@@ -11,13 +10,10 @@ import {
   IoCheckmarkCircleSharp,
   IoAlertCircleSharp,
 } from 'react-icons/io5';
-import { SiKaggle } from 'react-icons/si';
+
 import { personalInfo } from '../utils/data';
 
-// TODO: Replace with your EmailJS credentials
-const EMAILJS_SERVICE_ID = 'your_service_id';
-const EMAILJS_TEMPLATE_ID = 'your_template_id';
-const EMAILJS_PUBLIC_KEY = 'your_public_key';
+
 
 const contactStyles = `
   .contact-section {
@@ -272,26 +268,18 @@ const Contact = memo(function Contact() {
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setSending(true);
-    setStatus(null);
-
-    try {
-      await emailjs.sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        EMAILJS_PUBLIC_KEY
-      );
-      setStatus('success');
-      formRef.current.reset();
-    } catch (err) {
-      console.error('EmailJS error:', err);
-      setStatus('error');
-    } finally {
-      setSending(false);
-    }
+    
+    const formData = new FormData(formRef.current);
+    const subject = formData.get('subject') || 'Contact from Portfolio';
+    const message = formData.get('message') || '';
+    
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    window.open(gmailLink, '_blank');
+    
+    setStatus('success');
+    formRef.current.reset();
   };
 
   return (
@@ -452,19 +440,6 @@ const Contact = memo(function Contact() {
                 </div>
               </a>
 
-              <a
-                className="contact-link-item"
-                href={personalInfo.kaggle}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="contact-link-icon"><SiKaggle /></span>
-                <div className="contact-link-text">
-                  <span className="contact-link-label">Kaggle</span>
-                  {/* TODO: Replace with your Kaggle username */}
-                  <span className="contact-link-value">Kaggle Profile</span>
-                </div>
-              </a>
 
               <div className="contact-link-item" style={{ cursor: 'default' }}>
                 <span className="contact-link-icon"><IoLocationSharp /></span>
@@ -475,13 +450,8 @@ const Contact = memo(function Contact() {
               </div>
 
               <div className="contact-cv-buttons">
-                {/* TODO: Add actual CV PDF to /public/vijay-cv.pdf */}
                 <a className="cv-button primary" href="/vijay-cv.pdf" download>
-                  <IoDownloadSharp /> Download CV (Detailed)
-                </a>
-                {/* TODO: Add actual resume PDF to /public/vijay-resume.pdf */}
-                <a className="cv-button secondary" href="/vijay-resume.pdf" download>
-                  <IoDownloadSharp /> Download Resume (Short)
+                  <IoDownloadSharp /> Download CV
                 </a>
               </div>
             </motion.div>

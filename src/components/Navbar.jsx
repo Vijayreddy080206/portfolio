@@ -91,8 +91,6 @@ export default function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('');
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [cvOpen, setCvOpen] = useState(false);
-  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,16 +118,7 @@ export default function Navbar() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  // Close dropdown on click outside
-  useEffect(() => {
-    const handleClick = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setCvOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, []);
+
 
   const scrollTo = (e, href) => {
     e.preventDefault();
@@ -174,28 +163,10 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="nav-right" ref={dropdownRef}>
-            <button className="nav-cv-btn" onClick={() => setCvOpen(!cvOpen)}>
-              Download CV ↓
-            </button>
-            <AnimatePresence>
-              {cvOpen && (
-                <motion.div
-                  className="nav-dropdown"
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <a href="/vijay-cv.pdf" download onClick={() => setCvOpen(false)}>
-                    📄 Detailed CV
-                  </a>
-                  <a href="/vijay-resume.pdf" download onClick={() => setCvOpen(false)}>
-                    📝 Short Resume
-                  </a>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          <div className="nav-right">
+            <a className="nav-cv-btn" href="/vijay-cv.pdf" download>
+              Download CV
+            </a>
           </div>
 
           <button

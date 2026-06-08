@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5';
-import { SiKaggle } from 'react-icons/si';
+
 import { personalInfo } from '../utils/data';
 
 const footerStyles = `
@@ -63,7 +63,6 @@ const Footer = memo(function Footer() {
             © 2026 Vijay Vardhan Reddy Yammanuru
           </div>
           <div className="footer-center">
-            Built with React + Three.js
           </div>
           <div className="footer-right">
             {/* TODO: Replace with your actual GitHub URL */}
@@ -86,16 +85,7 @@ const Footer = memo(function Footer() {
             >
               <IoLogoLinkedin />
             </a>
-            {/* TODO: Replace with your actual Kaggle URL */}
-            <a
-              className="footer-social-link"
-              href={personalInfo.kaggle}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Kaggle"
-            >
-              <SiKaggle />
-            </a>
+
           </div>
         </div>
       </footer>

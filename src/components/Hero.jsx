@@ -142,16 +142,27 @@ function StatCard({ stat, delay }) {
         {count}{stat.suffix}
       </div>
       <div className="hero-stat-label">{stat.label}</div>
+      {stat.tooltip && (
+        <div style={{
+          fontFamily: 'DM Mono, monospace',
+          fontSize: '9px',
+          color: '#556677',
+          marginTop: '8px',
+          letterSpacing: '0.5px'
+        }}>
+          {stat.tooltip}
+        </div>
+      )}
     </motion.div>
   );
 }
 
 /* ─── Hero ─── */
 export default function Hero() {
-  const [typedText, setTypedText] = useState('');
+  const [typedText, setTypedText] = useState(typingLines[0]);
   const lineIdx = useRef(0);
-  const charIdx = useRef(0);
-  const isDeleting = useRef(false);
+  const charIdx = useRef(typingLines[0].length);
+  const isDeleting = useRef(true);
 
   useEffect(() => {
     let timeout;
@@ -203,7 +214,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            {personalInfo.shortName}
+            Vijay Vardhan Reddy
           </motion.h1>
 
           <motion.p
@@ -241,7 +252,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.0 }}
           >
-            <a href="#projects" className="hero-btn-primary">View Projects</a>
+            <a href="#projects" className="hero-btn-primary">See My Work</a>
             <a href="/vijay-cv.pdf" download className="hero-btn-outline">Download CV ↓</a>
           </motion.div>
 

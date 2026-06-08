@@ -7,17 +7,18 @@
 export const personalInfo = {
   name: 'Vijay Vardhan Reddy Yammanuru',
   shortName: 'Vijay Vardhan',
-  role: 'Data Analyst · AI/ML Developer · Big Data',
+  role: 'Data Analyst & AI/ML Developer',
   university: 'NIIT University, Neemrana, Rajasthan',
   universityPeriod: '2023–2027',
   location: 'Hyderabad, India',
   email: 'vijayvardhanreddyyammanuru@gmail.com',
   phone: '+91 8985863450',
-  linkedin: 'https://linkedin.com/in/vijay-vardhan', // TODO: Replace with actual LinkedIn URL
-  github: 'https://github.com/vijayvardhan', // TODO: Replace with actual GitHub URL
-  kaggle: 'https://kaggle.com/vijayvardhan', // TODO: Replace with actual Kaggle URL
+  linkedin: 'https://www.linkedin.com/in/vijayvardhanreddy-yammanuru-09472837b',
+  github: 'https://github.com/Vijayreddy080206?tab=repositories',
   about: `I'm a 3rd-year B.Tech Big Data student at NIIT University with a deep obsession for building systems that think. Not just analyze — think. I engineered a prescriptive AI that outwitted a Mercedes F1 pit wall using Monte Carlo Tree Search. I built a brain activation visualizer powered by peer-reviewed 2025 neuroscience research. I don't wait to be given real problems — I go find them.\n\nMy stack spans Python, SQL, Power BI, React, FastAPI, Redis, and Three.js. I'm driven by one question: what decision does this data actually enable? That's what I build toward.`,
-  availableFrom: 'July 2026',
+  availableFrom: 'Available Immediately',
+  cvLink: '/vijay-cv.pdf',
+  resumeLink: '/vijay-resume.pdf',
 };
 
 // ─── 2. Typing Lines (Hero section) ───
@@ -30,10 +31,10 @@ export const typingLines = [
 
 // ─── 3. Hero Stats ───
 export const heroStats = [
-  { value: 8000, suffix: '+', label: 'Race futures / lap', accent: 'blue' },
-  { value: 89.1, suffix: '%', label: 'F1 Strategy Accuracy', accent: 'teal', decimals: 1 },
-  { value: 20484, suffix: '', label: 'Brain vertices predicted', accent: 'blue' },
-  { value: 200, suffix: 'K+', label: 'IPL rows analyzed', accent: 'teal' },
+  { value: 8000, suffix: '+', label: 'Race futures / lap', accent: 'blue', tooltip: 'MCTS simulation engine' },
+  { value: 89.1, suffix: '%', label: 'F1 Strategy Accuracy', accent: 'teal', decimals: 1, tooltip: 'Vs live 2026 telemetry' },
+  { value: 20484, suffix: '', label: 'Brain vertices predicted', accent: 'blue', tooltip: 'Per-second cognitive map' },
+  { value: 200, suffix: 'K+', label: 'IPL rows analyzed', accent: 'teal', tooltip: '16 seasons data warehouse' },
 ];
 
 // ─── 4. Projects ───
@@ -55,7 +56,7 @@ export const projects = [
       'Outperformed Mercedes by 2 laps at Suzuka GP',
     ],
     howIBuiltIt: `Engineered a Monte Carlo Tree Search engine with Deep-Branching Heuristics. Solved Python GIL bottleneck with concurrent.futures.ThreadPoolExecutor. Built dual Redis Pub/Sub pipes — raw FIA telemetry in, strategic commands out to live React dashboard. Back-tested against Australian, Chinese, and Japanese GP 2026 telemetry. Full fault tolerance: handles null telemetry, DNS events, dirty data — without dropping a frame.`,
-    githubLink: '#', // TODO: Replace with actual GitHub URL
+    githubLink: 'https://github.com/Vijayreddy080206/f1-strategy-system',
   },
   {
     id: 'neurolens',
@@ -74,7 +75,7 @@ export const projects = [
       '2–3× better accuracy than prior cognitive load methods',
     ],
     howIBuiltIt: `Fused V-JEPA2 (video), wav2vec 2.0 (audio), and Llama 3.2 (transcript) through a Transformer into unified brain representations. Deployed on Kaggle P100 GPU via ngrok. Built custom Three.js 3D brain viewer — binary GLB parser, per-vertex fMRI heatmap at 60fps with lerp animation. Alert system gives educators exact timestamps: '4:32–6:18: students disengaged.'`,
-    githubLink: '#', // TODO: Replace with actual GitHub URL
+    githubLink: 'https://github.com/Vijayreddy080206?tab=repositories',
   },
   {
     id: 'ipl-analytics',
@@ -93,7 +94,7 @@ export const projects = [
       'Interactive season slicer with KPI cards and venue analysis',
     ],
     howIBuiltIt: `Built MySQL as the data warehouse. Engineered complex SQL (CASE WHEN, CREATE TABLE) to pre-calculate Winner, Runner-Up, Orange Cap, Purple Cap metrics — offloading computation from Power BI. Built neon-themed interactive dashboard with season slicers driving KPI cards, points table, toss analysis, and venue breakdowns.`,
-    githubLink: '#', // TODO: Replace with actual GitHub URL
+    githubLink: 'https://github.com/Vijayreddy080206?tab=repositories',
   },
   {
     id: 'hoshitha-boutique',
@@ -104,15 +105,16 @@ export const projects = [
     year: '2024-25',
     tags: ['React', 'Node.js', 'MongoDB', 'Express', 'Vercel'],
     featured: false,
-    whatISolved: `Full-stack MERN e-commerce platform with RBAC authentication, SMTP order notifications, CORS resolution, SEO optimization. Live and publicly accessible.`,
+    whatISolved: `Full-stack MERN e-commerce platform with RBAC authentication, SMTP order notifications, CORS resolution, and SEO optimization. Live and publicly accessible.`,
     impactPoints: [
-      'Decoupled MERN: React on Vercel, Node.js on Render',
-      'bcryptjs auth with Role-Based Access Control',
-      'Automated Nodemailer/SMTP order notifications',
-      'Google Search Console indexed and SEO optimized',
+      'RBAC with 3 user roles',
+      'SMTP email on order',
+      'Live on Vercel',
+      'SEO optimized'
     ],
-    howIBuiltIt: `Architected decoupled MERN app. Diagnosed CORS conflicts between Vercel and Render. Resolved IPv6 timeout issues routing SMTP through Port 587. Improved SEO via Open Graph tags and Google Search Console.`,
-    githubLink: '#', // TODO: Replace with actual GitHub URL
+    howIBuiltIt: `Architected and deployed a decoupled MERN application: React.js + Vite on Vercel, Node.js/Express.js on Render, MongoDB for e-commerce data. Diagnosed CORS conflicts between Vercel and Render; resolved IPv6 timeout issues by routing SMTP through Port 587. Improved SEO via Open Graph tags and Google Search Console indexing.`,
+    githubLink: 'https://github.com/Vijayreddy080206/hoshitha-boutique',
+    liveLink: 'https://hoshitha-boutique-shop.vercel.app/',
   },
 ];
 
@@ -121,7 +123,7 @@ export const skillCategories = [
   {
     name: 'Data & Analytics',
     accent: 'teal',
-    skills: ['Python', 'SQL', 'Power BI', 'Excel', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'DAX', 'Power Query'],
+    skills: ['Python', 'SQL', 'Power BI', 'Excel', 'Pandas', 'NumPy', 'Matplotlib', 'DAX', 'Power Query'],
   },
   {
     name: 'AI / Machine Learning',
@@ -159,7 +161,7 @@ export const certifications = [
     note: null,
     date: 'Dec 2025',
     accent: 'teal',
-    credlyLink: '#', // TODO: add real link
+    credlyLink: '/certificates/deloitte certificate.pdf',
   },
   {
     title: 'Data Visualisation: Empowering Business with Effective Insights',
@@ -168,7 +170,7 @@ export const certifications = [
     note: null,
     date: 'Dec 2025',
     accent: 'blue',
-    credlyLink: '#', // TODO: add real link
+    credlyLink: '/certificates/tata data visualisation certificate.pdf',
   },
   {
     title: 'Google AI Essentials',
@@ -177,7 +179,7 @@ export const certifications = [
     note: 'Credly Verified',
     date: 'Dec 2025',
     accent: 'teal',
-    credlyLink: '#', // TODO: add real link
+    credlyLink: '/certificates/GoogleAIEssentials certificate.pdf',
   },
   {
     title: 'SQL Essential Training',
@@ -186,7 +188,7 @@ export const certifications = [
     note: '7.8 CPE Credits — NASBA Accredited',
     date: 'Feb 2026',
     accent: 'blue',
-    credlyLink: '#', // TODO: add real link
+    credlyLink: '/certificates/SQL Essential Training CertificateOfCompletion.pdf',
   },
   {
     title: 'Complete Your First Project in SQL',
@@ -195,7 +197,7 @@ export const certifications = [
     note: null,
     date: 'Feb 2026',
     accent: 'teal',
-    credlyLink: '#', // TODO: add real link
+    credlyLink: '/certificates/Complete Your First Project in SQL CertificateOfCompletion.pdf',
   },
   {
     title: 'Operations Core Certificate',
@@ -204,7 +206,7 @@ export const certifications = [
     note: 'Letter of Recommendation from Dean of Student Affairs',
     date: 'Nov 2025',
     accent: 'blue',
-    credlyLink: '#', // TODO: add real link
+    credlyLink: '/certificates/sino certificate.png',
   },
 ];
 
@@ -248,8 +250,17 @@ export const timelineEvents = [
   },
   {
     year: '2024',
-    title: 'Led siNUsoid v9 Operations',
-    subtitle: '100+ volunteers · 5,000+ attendees · Dean\'s LoR',
+    title: 'Lead Operations · siNUsoid v9',
+    subtitle: 'Managed DJ nights & sports events · 100+ volunteers · 5,000+ attendees',
+    icon: 'users',
+    color: 'gray',
+    highlight: false,
+    isPulse: false,
+  },
+  {
+    year: '2025',
+    title: 'Core Operations · siNUsoid v9',
+    subtitle: 'Full event ownership · Vendor management · Dean\'s LoR',
     icon: 'users',
     color: 'blue',
     highlight: false,
