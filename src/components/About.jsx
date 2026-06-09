@@ -13,10 +13,10 @@ const aboutStyles = `
   .about-photo-col { display: flex; flex-direction: column; align-items: center; gap: 24px; }
   .about-photo {
     width: 200px; height: 200px; border-radius: 50%;
-    border: 2px solid #6C8EFF; box-shadow: 0 0 30px rgba(108,142,255,0.2);
+    border: 2px solid #4F7FFF; box-shadow: 0 0 30px rgba(79,127,255,0.2);
     display: flex; align-items: center; justify-content: center;
-    background: #111827; font-family: 'Syne', sans-serif;
-    font-size: 48px; font-weight: 800; color: #6C8EFF; overflow: hidden;
+    background: #0D1230; font-family: 'Syne', sans-serif;
+    font-size: 48px; font-weight: 800; color: #4F7FFF; overflow: hidden;
   }
   .about-photo img { width: 100%; height: 100%; object-fit: cover; }
   .about-socials { display: flex; gap: 16px; }
@@ -27,8 +27,8 @@ const aboutStyles = `
     text-decoration: none;
   }
   .about-social-link:hover {
-    color: #6C8EFF; border-color: #6C8EFF;
-    box-shadow: 0 0 15px rgba(108,142,255,0.2); transform: translateY(-2px);
+    color: #4F7FFF; border-color: #4F7FFF;
+    box-shadow: 0 0 15px rgba(79,127,255,0.2); transform: translateY(-2px);
   }
   .about-content {}
   .about-heading {
@@ -36,7 +36,7 @@ const aboutStyles = `
     font-weight: 700; color: #FFFFFF; margin-bottom: 8px;
   }
   .about-heading-line {
-    width: 48px; height: 3px; background: #6C8EFF;
+    width: 48px; height: 3px; background: #4F7FFF;
     border-radius: 99px; margin-bottom: 32px;
   }
   .about-text {
@@ -48,8 +48,8 @@ const aboutStyles = `
     font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
     padding: 8px 20px; border-radius: 50px; letter-spacing: 0.5px;
   }
-  .about-badge-teal { background: #6C8EFF; color: #0A0E1A; }
-  .about-badge-blue { background: #A78BFA; color: #0A0E1A; }
+  .about-badge-teal { background: #4F7FFF; color: #06091A; }
+  .about-badge-blue { background: #9B6DFF; color: #06091A; }
   @media (max-width: 768px) {
     .about-container { grid-template-columns: 1fr; gap: 40px; }
     .about-photo-col { align-items: center; }

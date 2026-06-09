@@ -92,7 +92,7 @@ const contactStyles = `
   .form-input:focus,
   .form-textarea:focus {
     border-color: var(--accent-teal);
-    box-shadow: 0 0 0 2px rgba(108, 142, 255, 0.1);
+    box-shadow: 0 0 0 2px rgba(79, 127, 255, 0.1);
   }
   .form-input::placeholder,
   .form-textarea::placeholder {
@@ -121,7 +121,7 @@ const contactStyles = `
   }
   .form-submit:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(108, 142, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(79, 127, 255, 0.3);
   }
   .form-submit:disabled {
     opacity: 0.6;
@@ -137,9 +137,9 @@ const contactStyles = `
     border-radius: var(--radius-sm);
   }
   .form-status.success {
-    background: rgba(108, 142, 255, 0.1);
+    background: rgba(79, 127, 255, 0.1);
     color: var(--accent-teal);
-    border: 1px solid rgba(108, 142, 255, 0.2);
+    border: 1px solid rgba(79, 127, 255, 0.2);
   }
   .form-status.error {
     background: rgba(255, 71, 87, 0.1);
@@ -217,7 +217,7 @@ const contactStyles = `
   }
   .cv-button.primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(108, 142, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(79, 127, 255, 0.3);
   }
   .cv-button.secondary {
     background: transparent;
@@ -225,7 +225,7 @@ const contactStyles = `
     border: 1px solid var(--accent-teal);
   }
   .cv-button.secondary:hover {
-    background: rgba(108, 142, 255, 0.1);
+    background: rgba(79, 127, 255, 0.1);
     transform: translateY(-2px);
   }
   /* Spinner */

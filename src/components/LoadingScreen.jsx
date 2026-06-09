@@ -40,7 +40,7 @@ export default function LoadingScreen({ onComplete }) {
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: '#0A0E1A',
+        background: '#06091A',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -65,7 +65,7 @@ export default function LoadingScreen({ onComplete }) {
           fontFamily: "'Syne', sans-serif",
           fontSize: '72px',
           fontWeight: 800,
-          color: '#6C8EFF',
+          color: '#4F7FFF',
           animation: 'vvPulse 2s ease-in-out infinite',
           userSelect: 'none',
         }}
@@ -86,7 +86,7 @@ export default function LoadingScreen({ onComplete }) {
         <div
           style={{
             height: '100%',
-            background: 'linear-gradient(90deg, #6C8EFF, #A78BFA)',
+            background: 'linear-gradient(90deg, #4F7FFF, #9B6DFF)',
             borderRadius: '99px',
             animation: 'fillBar 2.2s ease-in-out forwards',
           }}

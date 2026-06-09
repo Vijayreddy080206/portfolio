@@ -10,25 +10,25 @@ const skillsStyles = `
     font-weight: 700; color: #FFFFFF; margin-bottom: 8px;
   }
   .skills-heading-line {
-    width: 48px; height: 3px; background: #6C8EFF;
+    width: 48px; height: 3px; background: #4F7FFF;
     border-radius: 99px; margin-bottom: 48px;
   }
   .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .skill-cat {
-    background: #111827; border-radius: 12px; padding: 24px;
+    background: #0D1230; border-radius: 12px; padding: 24px;
     transition: all 0.3s ease;
   }
-  .skill-cat.accent-teal { border-left: 3px solid #6C8EFF; }
-  .skill-cat.accent-blue { border-left: 3px solid #A78BFA; }
+  .skill-cat.accent-teal { border-left: 3px solid #4F7FFF; }
+  .skill-cat.accent-blue { border-left: 3px solid #9B6DFF; }
   .skill-cat.accent-gray { border-left: 3px solid #2A3547; }
-  .skill-cat.accent-teal:hover { box-shadow: 0 0 20px rgba(108,142,255,0.08); }
-  .skill-cat.accent-blue:hover { box-shadow: 0 0 20px rgba(167,139,250,0.08); }
+  .skill-cat.accent-teal:hover { box-shadow: 0 0 20px rgba(79,127,255,0.08); }
+  .skill-cat.accent-blue:hover { box-shadow: 0 0 20px rgba(155,109,255,0.08); }
   .skill-cat.accent-gray:hover { box-shadow: 0 0 20px rgba(136,153,170,0.06); }
 
   .skill-cat-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
   .skill-cat-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .skill-cat-dot.teal { background: #6C8EFF; }
-  .skill-cat-dot.blue { background: #A78BFA; }
+  .skill-cat-dot.teal { background: #4F7FFF; }
+  .skill-cat-dot.blue { background: #9B6DFF; }
   .skill-cat-dot.gray { background: #6B7A99; }
   .skill-cat-name {
     font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; color: #FFFFFF;
@@ -37,16 +37,16 @@ const skillsStyles = `
   .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
   .sk-pill {
     font-family: 'DM Mono', monospace; font-size: 12px; padding: 6px 14px;
-    background: #111827; border: 1px solid #1E2535; border-radius: 6px;
+    background: #0D1230; border: 1px solid #1E2535; border-radius: 6px;
     color: #6B7A99; transition: all 0.2s ease; cursor: default;
   }
   .sk-pill.teal:hover {
-    background: rgba(108,142,255,0.1); border-color: #6C8EFF; color: #6C8EFF;
-    box-shadow: 0 0 14px rgba(108,142,255,0.2); transform: scale(1.04);
+    background: rgba(79,127,255,0.1); border-color: #4F7FFF; color: #4F7FFF;
+    box-shadow: 0 0 14px rgba(79,127,255,0.2); transform: scale(1.04);
   }
   .sk-pill.blue:hover {
-    background: rgba(167,139,250,0.1); border-color: #A78BFA; color: #A78BFA;
-    box-shadow: 0 0 14px rgba(167,139,250,0.2); transform: scale(1.04);
+    background: rgba(155,109,255,0.1); border-color: #9B6DFF; color: #9B6DFF;
+    box-shadow: 0 0 14px rgba(155,109,255,0.2); transform: scale(1.04);
   }
   .sk-pill.gray:hover { border-color: #6B7A99; color: #FFFFFF; }
 
