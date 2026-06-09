@@ -46,12 +46,7 @@ export default function App() {
 
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
 
-      <div
-        style={{
-          opacity: loading ? 0 : 1,
-          transition: 'opacity 0.5s ease',
-        }}
-      >
+      <div>
         <Navbar />
         <main>
           <Hero />
