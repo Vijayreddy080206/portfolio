@@ -4,15 +4,15 @@
 
 /* ─── 1. CSS Custom Properties ─── */
 :root {
-  --bg-primary: #0A0E1A;
-  --bg-secondary: #111827;
-  --bg-card: #111827;
-  --accent-teal: #6C8EFF;
-  --accent-blue: #A78BFA;
-  --accent-teal-dim: rgba(108, 142, 255, 0.15);
-  --accent-blue-dim: rgba(167, 139, 250, 0.15);
-  --accent-teal-glow: 0 0 20px rgba(108, 142, 255, 0.3);
-  --accent-blue-glow: 0 0 20px rgba(167, 139, 250, 0.3);
+  --bg-primary: #06091A;
+  --bg-secondary: #0D1230;
+  --bg-card: #0D1230;
+  --accent-teal: #4F7FFF;
+  --accent-blue: #9B6DFF;
+  --accent-teal-dim: rgba(79, 127, 255, 0.15);
+  --accent-blue-dim: rgba(155, 109, 255, 0.15);
+  --accent-teal-glow: 0 0 20px rgba(79, 127, 255, 0.3);
+  --accent-blue-glow: 0 0 20px rgba(155, 109, 255, 0.3);
   --text-primary: #E8EEFF;
   --text-secondary: #8899BB;
   --text-muted: #6B7A99;
@@ -273,7 +273,7 @@ input:focus, textarea:focus {
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, #6C8EFF, #A78BFA);
+  background: linear-gradient(90deg, #4F7FFF, #9B6DFF);
   z-index: 10000;
   transition: width 0.1s linear;
   border-radius: 0 1px 1px 0;
@@ -292,7 +292,7 @@ input:focus, textarea:focus {
   font-size: 14px;
   color: var(--accent-teal);
   z-index: 9999;
-  box-shadow: 0 0 20px rgba(108, 142, 255, 0.3), 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(79, 127, 255, 0.3), 0 8px 30px rgba(0, 0, 0, 0.4);
   max-width: 360px;
 }
 
@@ -360,9 +360,9 @@ input:focus, textarea:focus {
 
 /* Styled scrollbar */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #0A0E1A; }
+::-webkit-scrollbar-track { background: #06091A; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #6C8EFF, #A78BFA);
+  background: linear-gradient(180deg, #4F7FFF, #9B6DFF);
   border-radius: 99px;
 }
 
@@ -386,7 +386,7 @@ section { padding: 100px 0; }
 }
 .section-heading-line {
   width: 48px; height: 3px;
-  background: #6C8EFF;
+  background: #4F7FFF;
   border-radius: 99px;
   margin-bottom: 48px;
 }

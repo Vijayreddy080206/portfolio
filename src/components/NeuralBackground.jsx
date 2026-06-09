@@ -11,7 +11,7 @@ export default function NeuralBackground() {
     let width = window.innerWidth;
     let height = window.innerHeight;
     const PARTICLE_COUNT = 1800;
-    const CONNECTION_DIST = 110;
+    const CONNECTION_DIST = 120;
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
@@ -40,8 +40,8 @@ export default function NeuralBackground() {
     const colors = new Float32Array(PARTICLE_COUNT * 3);
     const velocities = new Float32Array(PARTICLE_COUNT * 2);
 
-    const teal = new THREE.Color('#6C8EFF');
-    const blue = new THREE.Color('#A78BFA');
+    const teal = new THREE.Color('#4F7FFF');
+    const blue = new THREE.Color('#9B6DFF');
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       positions[i * 3] = Math.random() * width;
@@ -60,11 +60,11 @@ export default function NeuralBackground() {
     particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 3.5,
+      size: 4.5,
       map: texture,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 1.0,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     });
@@ -84,7 +84,7 @@ export default function NeuralBackground() {
     const lineMat = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.35,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     });
@@ -154,11 +154,11 @@ export default function NeuralBackground() {
             lp[idx + 4] = pos[j * 3 + 1];
             lp[idx + 5] = 0;
             const alpha = 1 - Math.sqrt(d) / CONNECTION_DIST;
-            lc[idx] = alpha * 0.424;
-            lc[idx + 1] = alpha * 0.557;
+            lc[idx] = alpha * 0.31;
+            lc[idx + 1] = alpha * 0.498;
             lc[idx + 2] = alpha * 1.0;
-            lc[idx + 3] = alpha * 0.424;
-            lc[idx + 4] = alpha * 0.557;
+            lc[idx + 3] = alpha * 0.31;
+            lc[idx + 4] = alpha * 0.498;
             lc[idx + 5] = alpha * 1.0;
             lineIdx++;
           }
