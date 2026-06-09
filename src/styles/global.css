@@ -4,19 +4,19 @@
 
 /* ─── 1. CSS Custom Properties ─── */
 :root {
-  --bg-primary: #080C14;
-  --bg-secondary: #0D1320;
-  --bg-card: #0F1722;
-  --accent-teal: #00D4A8;
-  --accent-blue: #3B8BFF;
-  --accent-teal-dim: rgba(0, 212, 168, 0.15);
-  --accent-blue-dim: rgba(59, 139, 255, 0.15);
-  --accent-teal-glow: 0 0 20px rgba(0, 212, 168, 0.3);
-  --accent-blue-glow: 0 0 20px rgba(59, 139, 255, 0.3);
-  --text-primary: #FFFFFF;
-  --text-secondary: #C8D4E0;
-  --text-muted: #8899AA;
-  --border-subtle: #1E2A3A;
+  --bg-primary: #0A0E1A;
+  --bg-secondary: #111827;
+  --bg-card: #111827;
+  --accent-teal: #6C8EFF;
+  --accent-blue: #A78BFA;
+  --accent-teal-dim: rgba(108, 142, 255, 0.15);
+  --accent-blue-dim: rgba(167, 139, 250, 0.15);
+  --accent-teal-glow: 0 0 20px rgba(108, 142, 255, 0.3);
+  --accent-blue-glow: 0 0 20px rgba(167, 139, 250, 0.3);
+  --text-primary: #E8EEFF;
+  --text-secondary: #8899BB;
+  --text-muted: #6B7A99;
+  --border-subtle: #1E2535;
   --font-display: 'Syne', sans-serif;
   --font-mono: 'DM Mono', monospace;
   --radius-sm: 6px;
@@ -273,7 +273,7 @@ input:focus, textarea:focus {
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
+  background: linear-gradient(90deg, #6C8EFF, #A78BFA);
   z-index: 10000;
   transition: width 0.1s linear;
   border-radius: 0 1px 1px 0;
@@ -292,7 +292,7 @@ input:focus, textarea:focus {
   font-size: 14px;
   color: var(--accent-teal);
   z-index: 9999;
-  box-shadow: 0 0 20px rgba(0, 212, 168, 0.3), 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(108, 142, 255, 0.3), 0 8px 30px rgba(0, 0, 0, 0.4);
   max-width: 360px;
 }
 
@@ -360,9 +360,9 @@ input:focus, textarea:focus {
 
 /* Styled scrollbar */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #080C14; }
+::-webkit-scrollbar-track { background: #0A0E1A; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00D4A8, #3B8BFF);
+  background: linear-gradient(180deg, #6C8EFF, #A78BFA);
   border-radius: 99px;
 }
 
@@ -386,7 +386,7 @@ section { padding: 100px 0; }
 }
 .section-heading-line {
   width: 48px; height: 3px;
-  background: #00D4A8;
+  background: #6C8EFF;
   border-radius: 99px;
   margin-bottom: 48px;
 }

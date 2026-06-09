@@ -40,8 +40,8 @@ export default function NeuralBackground() {
     const colors = new Float32Array(PARTICLE_COUNT * 3);
     const velocities = new Float32Array(PARTICLE_COUNT * 2);
 
-    const teal = new THREE.Color('#00D4A8');
-    const blue = new THREE.Color('#3B8BFF');
+    const teal = new THREE.Color('#6C8EFF');
+    const blue = new THREE.Color('#A78BFA');
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       positions[i * 3] = Math.random() * width;
@@ -64,7 +64,7 @@ export default function NeuralBackground() {
       map: texture,
       vertexColors: true,
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.85,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     });
@@ -84,7 +84,7 @@ export default function NeuralBackground() {
     const lineMat = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
-      opacity: 0.18,
+      opacity: 0.22,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     });
@@ -154,12 +154,12 @@ export default function NeuralBackground() {
             lp[idx + 4] = pos[j * 3 + 1];
             lp[idx + 5] = 0;
             const alpha = 1 - Math.sqrt(d) / CONNECTION_DIST;
-            lc[idx] = 0;
-            lc[idx + 1] = alpha * 0.83;
-            lc[idx + 2] = alpha * 0.66;
-            lc[idx + 3] = 0;
-            lc[idx + 4] = alpha * 0.83;
-            lc[idx + 5] = alpha * 0.66;
+            lc[idx] = alpha * 0.424;
+            lc[idx + 1] = alpha * 0.557;
+            lc[idx + 2] = alpha * 1.0;
+            lc[idx + 3] = alpha * 0.424;
+            lc[idx + 4] = alpha * 0.557;
+            lc[idx + 5] = alpha * 1.0;
             lineIdx++;
           }
         }

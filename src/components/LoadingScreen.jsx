@@ -40,7 +40,7 @@ export default function LoadingScreen({ onComplete }) {
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: '#080C14',
+        background: '#0A0E1A',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -65,7 +65,7 @@ export default function LoadingScreen({ onComplete }) {
           fontFamily: "'Syne', sans-serif",
           fontSize: '72px',
           fontWeight: 800,
-          color: '#00D4A8',
+          color: '#6C8EFF',
           animation: 'vvPulse 2s ease-in-out infinite',
           userSelect: 'none',
         }}
@@ -77,7 +77,7 @@ export default function LoadingScreen({ onComplete }) {
         style={{
           width: '220px',
           height: '2px',
-          background: '#1E2A3A',
+          background: '#1E2535',
           borderRadius: '99px',
           marginTop: '24px',
           overflow: 'hidden',
@@ -86,7 +86,7 @@ export default function LoadingScreen({ onComplete }) {
         <div
           style={{
             height: '100%',
-            background: 'linear-gradient(90deg, #00D4A8, #3B8BFF)',
+            background: 'linear-gradient(90deg, #6C8EFF, #A78BFA)',
             borderRadius: '99px',
             animation: 'fillBar 2.2s ease-in-out forwards',
           }}
@@ -97,7 +97,7 @@ export default function LoadingScreen({ onComplete }) {
         style={{
           fontFamily: "'DM Mono', monospace",
           fontSize: '12px',
-          color: '#8899AA',
+          color: '#6B7A99',
           marginTop: '16px',
           letterSpacing: '0.5px',
         }}

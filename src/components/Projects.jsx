@@ -14,7 +14,7 @@ function BrainModel() {
     scene.traverse((child) => {
       if (child.isMesh) {
         child.material = child.material.clone();
-        child.material.color.setHex(0x00D4A8);
+        child.material.color.setHex(0x6C8EFF);
         child.material.emissive.setHex(0x003D30);
         child.material.emissiveIntensity = 0.3;
         child.material.transparent = true;
@@ -46,9 +46,9 @@ function IPLLineChart() {
       const ctx = canvasRef.current.getContext('2d')
 
       const areaGrad = ctx.createLinearGradient(0, 0, 0, 200)
-      areaGrad.addColorStop(0, 'rgba(0,212,168,0.25)')
-      areaGrad.addColorStop(0.6, 'rgba(59,139,255,0.08)')
-      areaGrad.addColorStop(1, 'rgba(59,139,255,0)')
+      areaGrad.addColorStop(0, 'rgba(108,142,255,0.25)')
+      areaGrad.addColorStop(0.6, 'rgba(167,139,250,0.08)')
+      areaGrad.addColorStop(1, 'rgba(167,139,250,0)')
 
       const seasons = ['2008','2009','2010','2011','2012','2013',
                        '2014','2015','2016','2017','2018','2019',
@@ -62,13 +62,13 @@ function IPLLineChart() {
           datasets: [{
             label: '200+ totals',
             data: counts,
-            borderColor: '#00D4A8',
+            borderColor: '#6C8EFF',
             borderWidth: 2.5,
             pointBackgroundColor: counts.map(v =>
-              v >= 10 ? '#00D4A8' : '#3B8BFF'
+              v >= 10 ? '#6C8EFF' : '#A78BFA'
             ),
             pointBorderColor: counts.map(v =>
-              v >= 10 ? '#00D4A8' : '#3B8BFF'
+              v >= 10 ? '#6C8EFF' : '#A78BFA'
             ),
             pointRadius: counts.map(v => v >= 10 ? 6 : 3),
             pointHoverRadius: 7,
@@ -84,11 +84,11 @@ function IPLLineChart() {
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#080C14',
-              borderColor: '#00D4A8',
+              backgroundColor: '#0A0E1A',
+              borderColor: '#6C8EFF',
               borderWidth: 1,
-              titleColor: '#00D4A8',
-              bodyColor: '#C8D4E0',
+              titleColor: '#6C8EFF',
+              bodyColor: '#8899BB',
               titleFont: { family: 'DM Mono, monospace', size: 11 },
               bodyFont: { family: 'DM Mono, monospace', size: 11 },
               padding: 10,
@@ -102,7 +102,7 @@ function IPLLineChart() {
             x: {
               ticks: {
                 font: { family: 'DM Mono, monospace', size: 9 },
-                color: '#8899AA',
+                color: '#6B7A99',
                 maxRotation: 45,
                 autoSkip: false
               },
@@ -114,7 +114,7 @@ function IPLLineChart() {
               max: 16,
               ticks: {
                 font: { family: 'DM Mono, monospace', size: 9 },
-                color: '#8899AA',
+                color: '#6B7A99',
                 stepSize: 2
               },
               grid: { color: 'rgba(255,255,255,0.06)' },
@@ -197,7 +197,7 @@ function IPLLineChart() {
       background: 'rgba(13,19,32,0.8)',
       borderRadius: '12px',
       padding: '16px 20px',
-      border: '1px solid rgba(0,212,168,0.15)',
+      border: '1px solid rgba(108,142,255,0.15)',
       width: '100%',
     }}>
       <div style={{
@@ -207,7 +207,7 @@ function IPLLineChart() {
         marginBottom: '4px',
       }}>
         <span style={{
-          color: '#00D4A8',
+          color: '#6C8EFF',
           fontFamily: 'DM Mono, monospace',
           fontSize: '11px',
           letterSpacing: '1.5px',
@@ -219,7 +219,7 @@ function IPLLineChart() {
           display: 'flex',
           alignItems: 'center',
           gap: '5px',
-          color: '#8899AA',
+          color: '#6B7A99',
           fontFamily: 'DM Mono, monospace',
           fontSize: '10px',
         }}>
@@ -228,7 +228,7 @@ function IPLLineChart() {
             width: '6px',
             height: '6px',
             borderRadius: '50%',
-            background: '#00D4A8',
+            background: '#6C8EFF',
             display: 'inline-block',
             animation: 'livePulse 1s infinite',
           }} />
@@ -236,7 +236,7 @@ function IPLLineChart() {
       </div>
 
       <div style={{
-        color: '#8899AA',
+        color: '#6B7A99',
         fontFamily: 'DM Mono, monospace',
         fontSize: '10px',
         marginBottom: '14px',
@@ -256,14 +256,14 @@ function IPLLineChart() {
         borderTop: '1px solid rgba(255,255,255,0.06)',
       }}>
         <span style={{
-          color: '#8899AA',
+          color: '#6B7A99',
           fontFamily: 'DM Mono, monospace',
           fontSize: '9px',
         }}>
           200,000+ rows · MySQL + Power BI · 2008–2023
         </span>
         <span style={{
-          color: '#00D4A8',
+          color: '#6C8EFF',
           fontFamily: 'DM Mono, monospace',
           fontSize: '9px',
         }}>
@@ -478,47 +478,47 @@ const projStyles = `
     font-weight: 700; color: #FFFFFF; margin-bottom: 8px;
   }
   .proj-heading-line {
-    width: 48px; height: 3px; background: #00D4A8;
+    width: 48px; height: 3px; background: #6C8EFF;
     border-radius: 99px; margin-bottom: 48px;
   }
   .proj-list { display: flex; flex-direction: column; gap: 40px; }
 
   /* ── Shared card base ── */
   .proj-card {
-    background: #0F1722; border-radius: 20px; padding: 40px;
+    background: #111827; border-radius: 20px; padding: 40px;
     transition: all 0.3s ease; position: relative; overflow: hidden;
   }
   .proj-card:hover { transform: translateY(-6px); }
 
   /* ── Featured F1 ── */
   .proj-card.featured {
-    border: 1px solid rgba(0,212,168,0.45);
-    box-shadow: 0 0 50px rgba(0,212,168,0.08), 0 0 100px rgba(0,212,168,0.04);
+    border: 1px solid rgba(108,142,255,0.45);
+    box-shadow: 0 0 50px rgba(108,142,255,0.08), 0 0 100px rgba(108,142,255,0.04);
   }
   .proj-card.featured:hover {
-    box-shadow: 0 0 60px rgba(0,212,168,0.18), 0 0 100px rgba(0,212,168,0.08);
+    box-shadow: 0 0 60px rgba(108,142,255,0.18), 0 0 100px rgba(108,142,255,0.08);
   }
 
   /* ── NeuroLens ── */
   .proj-card.aiml {
-    border: 1px solid rgba(59,139,255,0.45);
-    box-shadow: 0 0 50px rgba(59,139,255,0.08);
+    border: 1px solid rgba(167,139,250,0.45);
+    box-shadow: 0 0 50px rgba(167,139,250,0.08);
   }
   .proj-card.aiml:hover {
-    box-shadow: 0 0 60px rgba(59,139,255,0.18);
+    box-shadow: 0 0 60px rgba(167,139,250,0.18);
   }
 
   /* ── IPL ── */
   .proj-card.analytics {
-    border: 1px solid rgba(0,212,168,0.25);
+    border: 1px solid rgba(108,142,255,0.25);
   }
   .proj-card.analytics:hover {
-    box-shadow: 0 0 40px rgba(0,212,168,0.12);
+    box-shadow: 0 0 40px rgba(108,142,255,0.12);
   }
 
   /* ── Mini card ── */
   .proj-card.mini {
-    border: 1px solid #1E2A3A; max-width: 700px; margin: 0 auto;
+    border: 1px solid #1E2535; max-width: 700px; margin: 0 auto;
     padding: 32px;
   }
   .proj-card.mini:hover { box-shadow: 0 0 30px rgba(0,0,0,0.3); }
@@ -530,9 +530,9 @@ const projStyles = `
 
   /* ── Badge ── */
   @keyframes badgePulse {
-    0% { box-shadow: 0 0 0px rgba(0,212,168,0); }
-    50% { box-shadow: 0 0 12px rgba(0,212,168,0.5); }
-    100% { box-shadow: 0 0 0px rgba(0,212,168,0); }
+    0% { box-shadow: 0 0 0px rgba(108,142,255,0); }
+    50% { box-shadow: 0 0 12px rgba(108,142,255,0.5); }
+    100% { box-shadow: 0 0 0px rgba(108,142,255,0); }
   }
   @keyframes pulse {
     0%, 100% { opacity: 1; }
@@ -548,17 +548,17 @@ const projStyles = `
     text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
   }
   .proj-badge.featured {
-    background: rgba(0,212,168,0.15); border: 1px solid #00D4A8; color: #00D4A8;
+    background: rgba(108,142,255,0.15); border: 1px solid #6C8EFF; color: #6C8EFF;
     animation: badgePulse 2s ease-in-out infinite;
   }
   .proj-badge.aiml {
-    background: rgba(59,139,255,0.15); border: 1px solid #3B8BFF; color: #3B8BFF;
+    background: rgba(167,139,250,0.15); border: 1px solid #A78BFA; color: #A78BFA;
   }
   .proj-badge.analytics {
-    background: rgba(0,212,168,0.1); border: 1px solid rgba(0,212,168,0.4); color: #00D4A8;
+    background: rgba(108,142,255,0.1); border: 1px solid rgba(108,142,255,0.4); color: #6C8EFF;
   }
   .proj-badge.fullstack {
-    background: rgba(136,153,170,0.1); border: 1px solid rgba(136,153,170,0.3); color: #8899AA;
+    background: rgba(136,153,170,0.1); border: 1px solid rgba(136,153,170,0.3); color: #6B7A99;
   }
 
   .proj-title {
@@ -568,19 +568,19 @@ const projStyles = `
 
   .proj-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
   .proj-tag {
-    font-family: 'DM Mono', monospace; font-size: 12px; color: #8899AA;
-    background: #080C14; padding: 5px 12px; border-radius: 6px;
-    border: 1px solid #1E2A3A; transition: all 0.2s ease;
+    font-family: 'DM Mono', monospace; font-size: 12px; color: #6B7A99;
+    background: #0A0E1A; padding: 5px 12px; border-radius: 6px;
+    border: 1px solid #1E2535; transition: all 0.2s ease;
   }
-  .proj-tag:hover { color: #FFFFFF; border-color: #8899AA; }
+  .proj-tag:hover { color: #FFFFFF; border-color: #6B7A99; }
 
   .proj-label {
-    font-family: 'DM Mono', monospace; font-size: 11px; color: #00D4A8;
+    font-family: 'DM Mono', monospace; font-size: 11px; color: #6C8EFF;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; margin-top: 20px;
   }
-  .proj-label.blue { color: #3B8BFF; }
+  .proj-label.blue { color: #A78BFA; }
   .proj-desc {
-    font-family: 'DM Mono', monospace; font-size: 13px; color: #C8D4E0;
+    font-family: 'DM Mono', monospace; font-size: 13px; color: #8899BB;
     line-height: 1.8;
   }
 
@@ -591,26 +591,26 @@ const projStyles = `
     border-radius: 6px; display: inline-flex; align-items: center;
   }
   .proj-chip.teal {
-    background: rgba(0,212,168,0.08); border: 1px solid rgba(0,212,168,0.2); color: #00D4A8;
+    background: rgba(108,142,255,0.08); border: 1px solid rgba(108,142,255,0.2); color: #6C8EFF;
   }
   .proj-chip.blue {
-    background: rgba(59,139,255,0.08); border: 1px solid rgba(59,139,255,0.2); color: #3B8BFF;
+    background: rgba(167,139,250,0.08); border: 1px solid rgba(167,139,250,0.2); color: #A78BFA;
   }
 
   .proj-how {
-    font-family: 'DM Mono', monospace; font-size: 12px; color: #8899AA;
+    font-family: 'DM Mono', monospace; font-size: 12px; color: #6B7A99;
     line-height: 1.8; margin-top: 8px;
   }
 
   .proj-github {
     display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
-    font-family: 'DM Mono', monospace; font-size: 13px; color: #8899AA;
+    font-family: 'DM Mono', monospace; font-size: 13px; color: #6B7A99;
     text-decoration: none; padding: 10px 20px; border-radius: 8px;
-    border: 1px solid #1E2A3A; transition: all 0.2s ease;
+    border: 1px solid #1E2535; transition: all 0.2s ease;
   }
   .proj-github:hover {
-    color: #00D4A8; border-color: #00D4A8;
-    box-shadow: 0 0 15px rgba(0,212,168,0.15);
+    color: #6C8EFF; border-color: #6C8EFF;
+    box-shadow: 0 0 15px rgba(108,142,255,0.15);
   }
 
   .proj-visual {
@@ -620,7 +620,7 @@ const projStyles = `
   /* ── Mini card overrides ── */
   .proj-card.mini .proj-title { font-size: 22px; }
   .proj-mini-desc {
-    font-family: 'DM Mono', monospace; font-size: 13px; color: #C8D4E0;
+    font-family: 'DM Mono', monospace; font-size: 13px; color: #8899BB;
     line-height: 1.7; margin-bottom: 16px;
   }
 
@@ -644,8 +644,8 @@ function ModelCanvas({ children, height = '300px', cameraPos = [0, 0, 4] }) {
       gl={{ alpha: true, antialias: true }}
     >
       <ambientLight intensity={0.3} />
-      <pointLight position={[5, 5, 5]} color="#00D4A8" intensity={1.2} />
-      <pointLight position={[-5, -5, 5]} color="#3B8BFF" intensity={0.8} />
+      <pointLight position={[5, 5, 5]} color="#6C8EFF" intensity={1.2} />
+      <pointLight position={[-5, -5, 5]} color="#A78BFA" intensity={0.8} />
       <Suspense fallback={null}>{children}</Suspense>
     </Canvas>
   );
@@ -809,7 +809,7 @@ function MiniCard({ project }) {
           <FaGithub /> View on GitHub
         </a>
         {project.liveLink && (
-          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="proj-github" style={{ marginTop: 0, borderColor: '#3B8BFF', color: '#3B8BFF' }}>
+          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="proj-github" style={{ marginTop: 0, borderColor: '#A78BFA', color: '#A78BFA' }}>
             Visit Live Site →
           </a>
         )}

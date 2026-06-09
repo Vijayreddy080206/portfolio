@@ -3,31 +3,31 @@ import { motion } from 'framer-motion';
 import { certifications } from '../utils/data';
 
 const certStyles = `
-  .cert-section { padding: 100px 0; background: #0D1320; }
+  .cert-section { padding: 100px 0; background: #111827; }
   .cert-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
   .cert-heading {
     font-family: 'Syne', sans-serif; font-size: clamp(32px,5vw,48px);
     font-weight: 700; color: #FFFFFF; margin-bottom: 8px;
   }
   .cert-heading-line {
-    width: 48px; height: 3px; background: #00D4A8;
+    width: 48px; height: 3px; background: #6C8EFF;
     border-radius: 99px; margin-bottom: 48px;
   }
   .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
   .cert-card {
-    background: #0F1722; border-radius: 14px; padding: 24px;
-    border: 1px solid #1E2A3A; transition: all 0.3s ease;
+    background: #111827; border-radius: 14px; padding: 24px;
+    border: 1px solid #1E2535; transition: all 0.3s ease;
     display: flex; flex-direction: column;
   }
   .cert-card.accent-teal:hover {
-    border-color: rgba(0,212,168,0.5);
-    box-shadow: 0 0 28px rgba(0,212,168,0.12);
+    border-color: rgba(108,142,255,0.5);
+    box-shadow: 0 0 28px rgba(108,142,255,0.12);
     transform: translateY(-5px);
   }
   .cert-card.accent-blue:hover {
-    border-color: rgba(59,139,255,0.5);
-    box-shadow: 0 0 28px rgba(59,139,255,0.12);
+    border-color: rgba(167,139,250,0.5);
+    box-shadow: 0 0 28px rgba(167,139,250,0.12);
     transform: translateY(-5px);
   }
 
@@ -36,23 +36,23 @@ const certStyles = `
     font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
     padding: 3px 10px; border-radius: 99px; width: fit-content;
   }
-  .cert-issuer.teal { background: rgba(0,212,168,0.12); color: #00D4A8; }
-  .cert-issuer.blue { background: rgba(59,139,255,0.12); color: #3B8BFF; }
+  .cert-issuer.teal { background: rgba(108,142,255,0.12); color: #6C8EFF; }
+  .cert-issuer.blue { background: rgba(167,139,250,0.12); color: #A78BFA; }
 
   .cert-title {
     font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600;
     color: #FFFFFF; margin-top: 12px; line-height: 1.4;
   }
   .cert-topics {
-    font-family: 'DM Mono', monospace; font-size: 12px; color: #8899AA;
+    font-family: 'DM Mono', monospace; font-size: 12px; color: #6B7A99;
     margin-top: 8px; line-height: 1.5;
   }
   .cert-note {
-    font-family: 'DM Mono', monospace; font-size: 11px; color: #8899AA;
+    font-family: 'DM Mono', monospace; font-size: 11px; color: #6B7A99;
     font-style: italic; margin-top: 6px;
   }
   .cert-date {
-    font-family: 'DM Mono', monospace; font-size: 11px; color: #8899AA;
+    font-family: 'DM Mono', monospace; font-size: 11px; color: #6B7A99;
     margin-top: 8px;
   }
   .cert-btn {
@@ -60,19 +60,18 @@ const certStyles = `
     padding: 8px 18px; border-radius: 6px;
     font-family: 'DM Mono', monospace; font-size: 12px;
     text-decoration: none; transition: all 0.2s ease;
-    margin-top: 16px;
   }
   .cert-btn.teal {
-    color: #00D4A8; border: 1px solid #00D4A8;
+    color: #6C8EFF; border: 1px solid #6C8EFF;
   }
   .cert-btn.teal:hover {
-    background: #00D4A8; color: #080C14;
+    background: #6C8EFF; color: #0A0E1A;
   }
   .cert-btn.blue {
-    color: #3B8BFF; border: 1px solid #3B8BFF;
+    color: #A78BFA; border: 1px solid #A78BFA;
   }
   .cert-btn.blue:hover {
-    background: #3B8BFF; color: #080C14;
+    background: #A78BFA; color: #0A0E1A;
   }
 
   @media (max-width: 1024px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }

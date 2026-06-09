@@ -13,22 +13,22 @@ const aboutStyles = `
   .about-photo-col { display: flex; flex-direction: column; align-items: center; gap: 24px; }
   .about-photo {
     width: 200px; height: 200px; border-radius: 50%;
-    border: 2px solid #00D4A8; box-shadow: 0 0 30px rgba(0,212,168,0.2);
+    border: 2px solid #6C8EFF; box-shadow: 0 0 30px rgba(108,142,255,0.2);
     display: flex; align-items: center; justify-content: center;
-    background: #0F1722; font-family: 'Syne', sans-serif;
-    font-size: 48px; font-weight: 800; color: #00D4A8; overflow: hidden;
+    background: #111827; font-family: 'Syne', sans-serif;
+    font-size: 48px; font-weight: 800; color: #6C8EFF; overflow: hidden;
   }
   .about-photo img { width: 100%; height: 100%; object-fit: cover; }
   .about-socials { display: flex; gap: 16px; }
   .about-social-link {
-    color: #8899AA; font-size: 22px; transition: all 0.2s ease;
+    color: #6B7A99; font-size: 22px; transition: all 0.2s ease;
     display: flex; align-items: center; justify-content: center;
-    width: 42px; height: 42px; border-radius: 50%; border: 1px solid #1E2A3A;
+    width: 42px; height: 42px; border-radius: 50%; border: 1px solid #1E2535;
     text-decoration: none;
   }
   .about-social-link:hover {
-    color: #00D4A8; border-color: #00D4A8;
-    box-shadow: 0 0 15px rgba(0,212,168,0.2); transform: translateY(-2px);
+    color: #6C8EFF; border-color: #6C8EFF;
+    box-shadow: 0 0 15px rgba(108,142,255,0.2); transform: translateY(-2px);
   }
   .about-content {}
   .about-heading {
@@ -36,11 +36,11 @@ const aboutStyles = `
     font-weight: 700; color: #FFFFFF; margin-bottom: 8px;
   }
   .about-heading-line {
-    width: 48px; height: 3px; background: #00D4A8;
+    width: 48px; height: 3px; background: #6C8EFF;
     border-radius: 99px; margin-bottom: 32px;
   }
   .about-text {
-    font-family: 'DM Mono', monospace; font-size: 14px; color: #C8D4E0;
+    font-family: 'DM Mono', monospace; font-size: 14px; color: #8899BB;
     line-height: 1.9; white-space: pre-line;
   }
   .about-badges { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
@@ -48,8 +48,8 @@ const aboutStyles = `
     font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
     padding: 8px 20px; border-radius: 50px; letter-spacing: 0.5px;
   }
-  .about-badge-teal { background: #00D4A8; color: #080C14; }
-  .about-badge-blue { background: #3B8BFF; color: #080C14; }
+  .about-badge-teal { background: #6C8EFF; color: #0A0E1A; }
+  .about-badge-blue { background: #A78BFA; color: #0A0E1A; }
   @media (max-width: 768px) {
     .about-container { grid-template-columns: 1fr; gap: 40px; }
     .about-photo-col { align-items: center; }
