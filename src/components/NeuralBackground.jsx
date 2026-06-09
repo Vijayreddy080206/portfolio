@@ -154,12 +154,12 @@ export default function NeuralBackground() {
             lp[idx + 4] = pos[j * 3 + 1];
             lp[idx + 5] = 0;
             const alpha = 1 - Math.sqrt(d) / CONNECTION_DIST;
-            lc[idx] = alpha * 0.31;
-            lc[idx + 1] = alpha * 0.498;
-            lc[idx + 2] = alpha * 1.0;
-            lc[idx + 3] = alpha * 0.31;
-            lc[idx + 4] = alpha * 0.498;
-            lc[idx + 5] = alpha * 1.0;
+            lc[idx] = alpha * 0.541;
+            lc[idx + 1] = alpha * 0.169;
+            lc[idx + 2] = alpha * 0.886;
+            lc[idx + 3] = alpha * 0.541;
+            lc[idx + 4] = alpha * 0.169;
+            lc[idx + 5] = alpha * 0.886;
             lineIdx++;
           }
         }
