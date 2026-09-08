@@ -93,8 +93,8 @@ export const projects = [
       'MySQL pre-computation → dramatically faster Power BI queries',
       'Interactive season slicer with KPI cards and venue analysis',
     ],
-    howIBuiltIt: `Built MySQL as the data warehouse. Engineered complex SQL (CASE WHEN, CREATE TABLE) to pre-calculate Winner, Runner-Up, Orange Cap, Purple Cap metrics — offloading computation from Power BI. Built neon-themed interactive dashboard with season slicers driving KPI cards, points table, toss analysis, and venue breakdowns.`,
-    githubLink: 'https://github.com/Vijayreddy080206?tab=repositories',
+    howIBuiltIt: `Built MySQL as the data warehouse. Engineered complex SQL (CASE WHEN, CREATE TABLE) to pre-calculate Winner, Runner-Up, Orange Cap, Purple Cap metrics - offloading computation from Power BI. Built neon-themed interactive dashboard with season slicers driving KPI cards, points table, toss analysis, and venue breakdowns.`,
+    githubLink: 'https://github.com/Vijayreddy080206/ipl-powerBI-dashboard',
   },
   {
     id: 'hoshitha-boutique',
