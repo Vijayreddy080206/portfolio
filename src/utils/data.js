@@ -123,27 +123,27 @@ export const skillCategories = [
   {
     name: 'Data & Analytics',
     accent: 'teal',
-    skills: ['Python', 'SQL', 'Power BI', 'Excel', 'Pandas', 'NumPy', 'Matplotlib', 'DAX', 'Power Query'],
+    skills: ['Python', 'SQL', 'Power BI', 'Excel', 'Pandas', 'NumPy', 'Matplotlib', 'DAX', 'Power Query', 'Jupyter Notebook'],
   },
   {
     name: 'AI / Machine Learning',
     accent: 'blue',
-    skills: ['Monte Carlo Tree Search', 'scikit-learn', 'LogisticRegressionCV', 'DecisionTreeClassifier', 'RandomForestClassifier', 'SMOTE', 'StandardScaler', 'Cross-Validation', 'FastF1 API', 'HuggingFace Hub'],
+    skills: ['scikit-learn', 'LogisticRegressionCV', 'DecisionTreeClassifier', 'RandomForestClassifier', 'imbalanced-learn (SMOTE)', 'StandardScaler', 'KFold Cross-Validation', 'Feature Engineering', 'Monte Carlo Tree Search', 'FastF1 API'],
   },
   {
     name: 'Backend & Data Engineering',
     accent: 'teal',
-    skills: ['FastAPI', 'Node.js', 'Express.js', 'Redis Pub/Sub', 'WebSocket', 'concurrent.futures', 'REST APIs', 'MySQL', 'MongoDB', 'Mongoose ODM'],
+    skills: ['Node.js', 'Express.js', 'Redis Pub/Sub', 'WebSocket', 'concurrent.futures', 'REST APIs', 'MySQL', 'MongoDB', 'Mongoose ODM'],
   },
   {
     name: 'Frontend & Visualization',
     accent: 'blue',
-    skills: ['React 18', 'Three.js', 'WebGL', 'Vite', 'JavaScript', 'HTML/CSS'],
+    skills: ['React 18', 'Vite', 'JavaScript', 'HTML/CSS', 'Chart.js', 'Framer Motion'],
   },
   {
     name: 'Cloud & Infrastructure',
     accent: 'gray',
-    skills: ['Kaggle P100 GPU', 'Vercel', 'Render', 'ngrok', 'Git', 'GitHub'],
+    skills: ['Vercel', 'Render', 'Git', 'GitHub', 'Jupyter Notebook'],
   },
   {
     name: 'Soft Skills',
