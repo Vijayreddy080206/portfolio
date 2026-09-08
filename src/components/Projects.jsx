@@ -669,6 +669,232 @@ function F1Card({ project }) {
   );
 }
 
+/* ─── Hospital Readmission Pipeline + Risk Gauge ─── */
+function ReadmissionPipeline() {
+  const [progress, setProgress] = React.useState(0);
+  const containerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          let start = null;
+          const duration = 3000;
+          const animate = (ts) => {
+            if (!start) start = ts;
+            const p = Math.min((ts - start) / duration, 1);
+            setProgress(p);
+            if (p < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const steps = [
+    { label: '81,414 rows', sub: 'Raw patient data', icon: '📊' },
+    { label: 'Data Cleaning', sub: 'Drop 95% sparse cols', icon: '🧹' },
+    { label: '46,816 rows', sub: 'Deduplicated', icon: '✂️' },
+    { label: 'Feature Eng.', sub: '50 → 31 features', icon: '⚙️' },
+    { label: 'Model', sub: 'LogisticRegression', icon: '🧠' },
+  ];
+
+  const stepDelay = 0.15;
+  const pipelineEnd = 0.75;
+  const gaugeStart = 0.7;
+
+  // Risk gauge
+  const gaugeProgress = Math.max(0, Math.min(1, (progress - gaugeStart) / (1 - gaugeStart)));
+  const riskAngle = -90 + (gaugeProgress * 180 * 0.73); // 73% risk
+  const riskValue = Math.round(gaugeProgress * 73);
+
+  return (
+    <div ref={containerRef} style={{
+      background: 'rgba(13,18,48,0.8)',
+      borderRadius: '14px',
+      padding: '20px 16px',
+      border: '1px solid rgba(155,109,255,0.2)',
+      width: '100%',
+      maxWidth: '320px',
+      margin: '0 auto',
+    }}>
+      {/* Header */}
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        marginBottom: '16px',
+      }}>
+        <span style={{
+          color: '#9B6DFF', fontFamily: 'DM Mono, monospace',
+          fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase',
+        }}>ML PIPELINE</span>
+        <span style={{
+          display: 'flex', alignItems: 'center', gap: '5px',
+          color: '#6B7A99', fontFamily: 'DM Mono, monospace', fontSize: '10px',
+        }}>
+          LIVE
+          <span style={{
+            width: '6px', height: '6px', borderRadius: '50%',
+            background: '#9B6DFF', display: 'inline-block',
+            animation: 'livePulse 1s infinite',
+          }} />
+        </span>
+      </div>
+
+      {/* Pipeline Steps */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}>
+        {steps.map((step, i) => {
+          const stepProgress = Math.max(0, Math.min(1,
+            (progress * (1 / pipelineEnd) - i * stepDelay) / (1 - steps.length * stepDelay + stepDelay)
+          ));
+          const visible = stepProgress > 0;
+          const lineProgress = Math.max(0, Math.min(1,
+            (progress * (1 / pipelineEnd) - (i + 0.5) * stepDelay) / (1 - steps.length * stepDelay + stepDelay)
+          ));
+
+          return (
+            <React.Fragment key={i}>
+              {/* Step Node */}
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: '10px',
+                opacity: visible ? 1 : 0,
+                transform: visible ? 'translateX(0)' : 'translateX(-20px)',
+                transition: 'all 0.4s ease',
+              }}>
+                <div style={{
+                  width: '32px', height: '32px', borderRadius: '8px',
+                  background: visible ? 'rgba(155,109,255,0.15)' : 'transparent',
+                  border: `1px solid ${visible ? 'rgba(155,109,255,0.4)' : 'transparent'}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '14px', flexShrink: 0,
+                }}>{step.icon}</div>
+                <div>
+                  <div style={{
+                    fontFamily: 'Syne, sans-serif', fontSize: '13px',
+                    fontWeight: 600, color: '#E8EEFF', lineHeight: 1.2,
+                  }}>{step.label}</div>
+                  <div style={{
+                    fontFamily: 'DM Mono, monospace', fontSize: '10px',
+                    color: '#6B7A99', lineHeight: 1.3,
+                  }}>{step.sub}</div>
+                </div>
+              </div>
+
+              {/* Connecting Line */}
+              {i < steps.length - 1 && (
+                <div style={{
+                  width: '2px', height: '16px', marginLeft: '15px',
+                  background: `linear-gradient(180deg, ${lineProgress > 0 ? '#9B6DFF' : 'transparent'}, ${lineProgress > 0.5 ? '#4F7FFF' : 'transparent'})`,
+                  opacity: lineProgress,
+                  transition: 'opacity 0.3s ease',
+                }} />
+              )}
+            </React.Fragment>
+          );
+        })}
+      </div>
+
+      {/* Arrow into gauge */}
+      <div style={{
+        display: 'flex', justifyContent: 'center', margin: '8px 0 4px',
+        opacity: progress > gaugeStart ? 1 : 0,
+        transition: 'opacity 0.4s ease',
+      }}>
+        <span style={{ color: '#9B6DFF', fontSize: '16px' }}>▼</span>
+      </div>
+
+      {/* Risk Gauge */}
+      <div style={{
+        opacity: progress > gaugeStart ? 1 : 0,
+        transform: progress > gaugeStart ? 'scale(1)' : 'scale(0.8)',
+        transition: 'all 0.5s ease',
+      }}>
+        <svg viewBox="0 0 200 130" width="100%" style={{ display: 'block' }}>
+          {/* Gauge background arc */}
+          <path
+            d="M 25 110 A 75 75 0 0 1 175 110"
+            fill="none"
+            stroke="#1E2535"
+            strokeWidth="10"
+            strokeLinecap="round"
+          />
+          {/* Green zone */}
+          <path
+            d="M 25 110 A 75 75 0 0 1 62 48"
+            fill="none"
+            stroke="rgba(34,197,94,0.4)"
+            strokeWidth="10"
+            strokeLinecap="round"
+          />
+          {/* Yellow zone */}
+          <path
+            d="M 62 48 A 75 75 0 0 1 138 48"
+            fill="none"
+            stroke="rgba(234,179,8,0.4)"
+            strokeWidth="10"
+            strokeLinecap="round"
+          />
+          {/* Red zone */}
+          <path
+            d="M 138 48 A 75 75 0 0 1 175 110"
+            fill="none"
+            stroke="rgba(239,68,68,0.5)"
+            strokeWidth="10"
+            strokeLinecap="round"
+          />
+
+          {/* Needle */}
+          <line
+            x1="100" y1="110"
+            x2={100 + 55 * Math.cos((riskAngle * Math.PI) / 180)}
+            y2={110 + 55 * Math.sin((riskAngle * Math.PI) / 180)}
+            stroke="#9B6DFF"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          {/* Needle center dot */}
+          <circle cx="100" cy="110" r="5" fill="#9B6DFF" />
+
+          {/* Risk value */}
+          <text x="100" y="98" textAnchor="middle"
+            fontFamily="Syne, sans-serif" fontSize="22" fontWeight="800"
+            fill={riskValue > 60 ? '#EF4444' : riskValue > 35 ? '#EAB308' : '#22C55E'}
+          >{riskValue}%</text>
+          <text x="100" y="125" textAnchor="middle"
+            fontFamily="DM Mono, monospace" fontSize="8" fill="#6B7A99"
+            letterSpacing="1.5" textTransform="uppercase"
+          >READMISSION RISK</text>
+
+          {/* Zone labels */}
+          <text x="30" y="125" fontFamily="DM Mono, monospace" fontSize="7" fill="#22C55E">LOW</text>
+          <text x="93" y="35" fontFamily="DM Mono, monospace" fontSize="7" fill="#EAB308">MED</text>
+          <text x="163" y="125" fontFamily="DM Mono, monospace" fontSize="7" fill="#EF4444">HIGH</text>
+        </svg>
+      </div>
+
+      {/* Bottom stats */}
+      <div style={{
+        display: 'flex', justifyContent: 'space-between',
+        paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.06)',
+        marginTop: '4px',
+        opacity: progress > 0.9 ? 1 : 0,
+        transition: 'opacity 0.4s ease',
+      }}>
+        <span style={{ color: '#6B7A99', fontFamily: 'DM Mono, monospace', fontSize: '9px' }}>
+          130 hospitals · UCI dataset
+        </span>
+        <span style={{ color: '#9B6DFF', fontFamily: 'DM Mono, monospace', fontSize: '9px' }}>
+          recall: 65%
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function ReadmissionCard({ project }) {
   return (
     <motion.div
@@ -678,25 +904,30 @@ function ReadmissionCard({ project }) {
       transition={{ duration: 0.65, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-80px' }}
     >
-      <div>
-        <span className="proj-badge aiml">{project.badge}</span>
-        <h3 className="proj-title">{project.title}</h3>
-        <div className="proj-tags">
-          {project.tags.map((t) => <span key={t} className="proj-tag">{t}</span>)}
+      <div className="proj-two-col">
+        <div>
+          <span className="proj-badge aiml">{project.badge}</span>
+          <h3 className="proj-title">{project.title}</h3>
+          <div className="proj-tags">
+            {project.tags.map((t) => <span key={t} className="proj-tag">{t}</span>)}
+          </div>
+          <p className="proj-label blue">THE PROBLEM</p>
+          <p className="proj-desc">{project.whatISolved}</p>
+          <p className="proj-label blue">KEY IMPACT</p>
+          <div className="proj-chips">
+            {project.impactPoints.map((p, i) => (
+              <span key={i} className="proj-chip blue">{p}</span>
+            ))}
+          </div>
+          <p className="proj-label blue">HOW I BUILT IT</p>
+          <p className="proj-how">{project.howIBuiltIt}</p>
+          <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="proj-github">
+            <FaGithub /> View on GitHub
+          </a>
         </div>
-        <p className="proj-label blue">THE PROBLEM</p>
-        <p className="proj-desc">{project.whatISolved}</p>
-        <p className="proj-label blue">KEY IMPACT</p>
-        <div className="proj-chips">
-          {project.impactPoints.map((p, i) => (
-            <span key={i} className="proj-chip blue">{p}</span>
-          ))}
+        <div className="proj-visual">
+          <ReadmissionPipeline />
         </div>
-        <p className="proj-label blue">HOW I BUILT IT</p>
-        <p className="proj-how">{project.howIBuiltIt}</p>
-        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="proj-github">
-          <FaGithub /> View on GitHub
-        </a>
       </div>
     </motion.div>
   );
