@@ -6,28 +6,7 @@ import * as THREE from 'three';
 import { FaGithub } from 'react-icons/fa';
 import { projects } from '../utils/data';
 
-/* ─── 3D Brain Model ─── */
-function BrainModel() {
-  const { scene } = useGLTF('/models/brain_areas__1_.glb');
-  const ref = useRef();
-  useEffect(() => {
-    scene.traverse((child) => {
-      if (child.isMesh) {
-        child.material = child.material.clone();
-        child.material.color.setHex(0x6C8EFF);
-        child.material.emissive.setHex(0x003D30);
-        child.material.emissiveIntensity = 0.3;
-        child.material.transparent = true;
-        child.material.opacity = 0.85;
-      }
-    });
-  }, [scene]);
-  useFrame((state, delta) => {
-    if (ref.current) ref.current.rotation.y += delta * 0.4;
-  });
-  return <primitive ref={ref} object={scene} scale={1.2} position={[0, -0.5, 0]} />;
-}
-useGLTF.preload('/models/brain_areas__1_.glb');
+/* ─── (Brain model removed — project replaced) ─── */
 
 /* ─── IPL Bar Chart ─── */
 /* ─── IPL Line Chart ─── */
@@ -690,7 +669,7 @@ function F1Card({ project }) {
   );
 }
 
-function NeuroLensCard({ project }) {
+function ReadmissionCard({ project }) {
   return (
     <motion.div
       className="proj-card aiml"
@@ -699,32 +678,25 @@ function NeuroLensCard({ project }) {
       transition={{ duration: 0.65, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-80px' }}
     >
-      <div className="proj-two-col">
-        <div>
-          <span className="proj-badge aiml">{project.badge}</span>
-          <h3 className="proj-title">{project.title}</h3>
-          <div className="proj-tags">
-            {project.tags.map((t) => <span key={t} className="proj-tag">{t}</span>)}
-          </div>
-          <p className="proj-label blue">THE PROBLEM</p>
-          <p className="proj-desc">{project.whatISolved}</p>
-          <p className="proj-label blue">KEY IMPACT</p>
-          <div className="proj-chips">
-            {project.impactPoints.map((p, i) => (
-              <span key={i} className="proj-chip blue">{p}</span>
-            ))}
-          </div>
-          <p className="proj-label blue">HOW I BUILT IT</p>
-          <p className="proj-how">{project.howIBuiltIt}</p>
-          <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="proj-github">
-            <FaGithub /> View on GitHub
-          </a>
+      <div>
+        <span className="proj-badge aiml">{project.badge}</span>
+        <h3 className="proj-title">{project.title}</h3>
+        <div className="proj-tags">
+          {project.tags.map((t) => <span key={t} className="proj-tag">{t}</span>)}
         </div>
-        <div className="proj-visual">
-          <ModelCanvas height="300px" cameraPos={[0, 0, 4]}>
-            <BrainModel />
-          </ModelCanvas>
+        <p className="proj-label blue">THE PROBLEM</p>
+        <p className="proj-desc">{project.whatISolved}</p>
+        <p className="proj-label blue">KEY IMPACT</p>
+        <div className="proj-chips">
+          {project.impactPoints.map((p, i) => (
+            <span key={i} className="proj-chip blue">{p}</span>
+          ))}
         </div>
+        <p className="proj-label blue">HOW I BUILT IT</p>
+        <p className="proj-how">{project.howIBuiltIt}</p>
+        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="proj-github">
+          <FaGithub /> View on GitHub
+        </a>
       </div>
     </motion.div>
   );
@@ -821,7 +793,7 @@ function MiniCard({ project }) {
 /* ─── Main Projects Section ─── */
 export default function Projects() {
   const f1 = projects.find((p) => p.id === 'f1-strategy');
-  const neuro = projects.find((p) => p.id === 'neurolens');
+  const readmission = projects.find((p) => p.id === 'hospital-readmission');
   const ipl = projects.find((p) => p.id === 'ipl-analytics');
   const boutique = projects.find((p) => p.id === 'hoshitha-boutique');
 
@@ -842,7 +814,7 @@ export default function Projects() {
 
           <div className="proj-list">
             {f1 && <F1Card project={f1} />}
-            {neuro && <NeuroLensCard project={neuro} />}
+            {readmission && <ReadmissionCard project={readmission} />}
             {ipl && <IPLCard project={ipl} />}
             {boutique && <MiniCard project={boutique} />}
           </div>

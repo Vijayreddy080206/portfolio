@@ -15,7 +15,7 @@ export const personalInfo = {
   phone: '+91 8985863450',
   linkedin: 'https://www.linkedin.com/in/vijayvardhanreddy-yammanuru-09472837b',
   github: 'https://github.com/Vijayreddy080206?tab=repositories',
-  about: `I'm a 3rd-year B.Tech Big Data student at NIIT University with a deep obsession for building systems that think. Not just analyze — think. I engineered a prescriptive AI that outwitted a Mercedes F1 pit wall using Monte Carlo Tree Search. I built a brain activation visualizer powered by peer-reviewed 2025 neuroscience research. I don't wait to be given real problems — I go find them.\n\nMy stack spans Python, SQL, Power BI, React, FastAPI, Redis, and Three.js. I'm driven by one question: what decision does this data actually enable? That's what I build toward.`,
+  about: `I'm a 3rd-year B.Tech Big Data student at NIIT University with a deep obsession for building systems that think. Not just analyze — think. I engineered a prescriptive AI that outwitted a Mercedes F1 pit wall using Monte Carlo Tree Search. I built a healthcare ML system that predicts patient readmission risk across 130 US hospitals. I don't wait to be given real problems — I go find them.\\n\\nMy stack spans Python, SQL, Power BI, React, FastAPI, Redis, and Three.js. I'm driven by one question: what decision does this data actually enable? That's what I build toward.`,
   availableFrom: 'Available Immediately',
   cvLink: '/vijay-cv.pdf',
   resumeLink: '/vijay-resume.pdf',
@@ -24,7 +24,7 @@ export const personalInfo = {
 // ─── 2. Typing Lines (Hero section) ───
 export const typingLines = [
   'I build real-time analytics engines.',
-  'I predict brain activation with AI.',
+  'I predict patient readmission risk with ML.',
   'I turn 200,000 rows into insight.',
   'I simulate 8,000 race futures per lap.',
 ];
@@ -33,7 +33,7 @@ export const typingLines = [
 export const heroStats = [
   { value: 8000, suffix: '+', label: 'Race futures / lap', accent: 'blue', tooltip: 'MCTS simulation engine' },
   { value: 89.1, suffix: '%', label: 'F1 Strategy Accuracy', accent: 'teal', decimals: 1, tooltip: 'Vs live 2026 telemetry' },
-  { value: 20484, suffix: '', label: 'Brain vertices predicted', accent: 'blue', tooltip: 'Per-second cognitive map' },
+  { value: 81414, suffix: '', label: 'Patient encounters analyzed', accent: 'blue', tooltip: '130 US hospitals dataset' },
   { value: 200, suffix: 'K+', label: 'IPL rows analyzed', accent: 'teal', tooltip: '16 seasons data warehouse' },
 ];
 
@@ -59,22 +59,22 @@ export const projects = [
     githubLink: 'https://github.com/Vijayreddy080206/f1-strategy-system',
   },
   {
-    id: 'neurolens',
-    title: 'NeuroLens — Cognitive Load Analyzer',
+    id: 'hospital-readmission',
+    title: 'Hospital Patient Readmission Risk Prediction',
     badge: 'AI/ML',
     badgeType: 'aiml',
-    category: 'Neuroscience AI',
+    category: 'Healthcare ML',
     year: '2026',
-    tags: ['React', 'FastAPI', 'Three.js', 'Meta AI TRIBE v2', 'Kaggle P100 GPU'],
+    tags: ['Python', 'scikit-learn', 'pandas', 'NumPy', 'Jupyter Notebook'],
     featured: true,
-    whatISolved: `Teachers have no idea if their students are actually engaged or mentally checked out. I built an AI that watches a lecture video and maps second-by-second brain activation across 20,484 cortical vertices.`,
+    whatISolved: `Hospitals face $500M+/year in CMS readmission penalties when diabetic patients are readmitted within 30 days. Built a machine learning system to predict high-risk patients so care teams can intervene early — prioritizing recall over accuracy because missing a true readmission is more costly than a false alarm.`,
     impactPoints: [
-      '20,484 brain vertices predicted per second',
-      '3 fused modalities: video + audio + transcript',
-      'Based on peer-reviewed research — Benchetrit et al., 2025',
-      '2–3× better accuracy than prior cognitive load methods',
+      '81,414 patient encounters from 130 US hospitals',
+      '31 engineered features from 50 raw columns',
+      '65% recall on readmission class — deliberate trade-off',
+      'Fairness audit revealed age-bias gap in younger patients',
     ],
-    howIBuiltIt: `Fused V-JEPA2 (video), wav2vec 2.0 (audio), and Llama 3.2 (transcript) through a Transformer into unified brain representations. Deployed on Kaggle P100 GPU via ngrok. Built custom Three.js 3D brain viewer — binary GLB parser, per-vertex fMRI heatmap at 60fps with lerp animation. Alert system gives educators exact timestamps: '4:32–6:18: students disengaged.'`,
+    howIBuiltIt: `Built on the UCI Diabetes 130-US Hospitals dataset. Cleaned 83-95% missing columns, converted age buckets to numeric, aggregated 20+ medication columns, mapped ICD codes into 8 clinical categories. Trained Logistic Regression (interpretable, for clinician trust) and Decision Tree with class_weight="balanced" for 9% class imbalance. Tested SMOTE but discovered it corrupts one-hot features — reverted to balanced weighting. Performed custom fairness audit by age group: found recall near 0% for youngest patients vs 88% for 85+ — a real deployment-blocking bias. Fixed 6 bugs including a data leakage bug (scaler refit on test data) and a silent label-swap in classification_report.`,
     githubLink: 'https://github.com/Vijayreddy080206?tab=repositories',
   },
   {
@@ -128,7 +128,7 @@ export const skillCategories = [
   {
     name: 'AI / Machine Learning',
     accent: 'blue',
-    skills: ['Monte Carlo Tree Search', 'Meta AI TRIBE v2', 'scikit-learn', 'Transformer fusion', 'V-JEPA2', 'wav2vec 2.0', 'Llama 3.2', 'FastF1 API', 'HuggingFace Hub'],
+    skills: ['Monte Carlo Tree Search', 'scikit-learn', 'LogisticRegressionCV', 'DecisionTreeClassifier', 'RandomForestClassifier', 'SMOTE', 'StandardScaler', 'Cross-Validation', 'FastF1 API', 'HuggingFace Hub'],
   },
   {
     name: 'Backend & Data Engineering',
@@ -295,8 +295,8 @@ export const timelineEvents = [
   },
   {
     year: '2026',
-    title: 'Built NeuroLens',
-    subtitle: 'Meta AI TRIBE v2 · 20,484 brain vertices predicted',
+    title: 'Built Hospital Readmission Predictor',
+    subtitle: 'Healthcare ML · 81K patient encounters · Fairness audit',
     icon: 'brain',
     color: 'blue',
     highlight: false,
