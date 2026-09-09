@@ -75,7 +75,7 @@ export const projects = [
       'Fairness audit revealed age-bias gap in younger patients',
     ],
     howIBuiltIt: `Built on the UCI Diabetes 130-US Hospitals dataset. Cleaned 83-95% missing columns, converted age buckets to numeric, aggregated 20+ medication columns, mapped ICD codes into 8 clinical categories. Trained Logistic Regression (interpretable, for clinician trust) and Decision Tree with class_weight="balanced" for 9% class imbalance. Tested SMOTE but discovered it corrupts one-hot features — reverted to balanced weighting. Performed custom fairness audit by age group: found recall near 0% for youngest patients vs 88% for 85+ — a real deployment-blocking bias. Fixed 6 bugs including a data leakage bug (scaler refit on test data) and a silent label-swap in classification_report.`,
-    githubLink: 'https://github.com/Vijayreddy080206?tab=repositories',
+    githubLink: 'https://github.com/Vijayreddy080206/Hospital-Patient-Readmission-Risk-Prediction',
   },
   {
     id: 'ipl-analytics',
