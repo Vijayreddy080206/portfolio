@@ -261,11 +261,11 @@ const S1 = [
   ['L', 465, 350], 
   ['Q', 455, 390, 490, 410], // 02
   ['L', 520, 425], 
-  ['Q', 550, 440, 520, 470], // 03
-  ['L', 490, 500], 
-  ['Q', 470, 520, 490, 540], // 04
-  ['L', 500, 550], 
-  ['Q', 530, 580, 560, 550], // 05
+  ['Q', 550, 435, 530, 460], // 03 — pulled up
+  ['L', 505, 480], 
+  ['Q', 490, 495, 505, 510], // 04 — pulled up
+  ['L', 520, 520], 
+  ['Q', 545, 540, 570, 515], // 05 — pulled up
   ['L', 760, 280] // straight to 06
 ];
 const S2 = [
@@ -278,19 +278,19 @@ const S2 = [
   ['Q', 880, 250, 890, 310], // 08
   ['L', 910, 480], 
   ['Q', 920, 550, 860, 560], // 09
-  ['L', 780, 570], 
-  ['Q', 740, 580, 710, 550], // 10
-  ['Q', 680, 520, 640, 550], // 11
-  ['Q', 600, 580, 560, 560], // 12
-  ['Q', 520, 540, 480, 580], // 13 entry
-  ['Q', 450, 620, 430, 580], // 13-14
-  ['Q', 420, 560, 390, 530]  // 14
+  ['L', 780, 575], 
+  ['Q', 740, 590, 710, 600], // 10 — pushed down
+  ['Q', 675, 615, 640, 605], // 11 — pushed down
+  ['Q', 600, 595, 565, 600], // 12 — pushed down
+  ['Q', 530, 610, 490, 630], // 13 entry — pushed down
+  ['Q', 455, 655, 435, 620], // 13-14 — pushed down
+  ['Q', 420, 595, 390, 570]  // 14 — pushed down
 ];
 const S3 = [
-  ['M', 390, 530],
-  ['L', 180, 320], 
-  ['Q', 150, 290, 160, 250], // 15
-  ['Q', 170, 210, 210, 190], // 15 exit
+  ['M', 390, 570],
+  ['L', 180, 340], 
+  ['Q', 150, 310, 160, 265], // 15
+  ['Q', 170, 220, 210, 200], // 15 exit
   ['L', 260, 165], 
   ['Q', 280, 155, 270, 135], // 16
   ['Q', 260, 115, 280, 95], // 17
@@ -306,7 +306,7 @@ const pathFull = buildSVG([...S1, ...S2.slice(1), ...S3.slice(1)]);
 
 const f1Path = new THREE.Path();
 const mapX = (x) => ((x + 50) / 1100) * 4 - 2;
-const mapY = (y) => 1.5 - ((y + 50) / 825) * 3;
+const mapY = (y) => 1.5 - ((y + 50) / 900) * 3;
 
 [...S1, ...S2.slice(1), ...S3.slice(1)].forEach(cmd => {
   if (cmd[0] === 'M') f1Path.moveTo(mapX(cmd[1]), mapY(cmd[2]));
@@ -354,7 +354,7 @@ function F1Circuit() {
       margin: '0 auto'
     }}>
       <svg
-        viewBox="-50 -50 1100 825"
+        viewBox="-50 -50 1100 900"
         width="100%"
         height="100%"
         xmlns="http://www.w3.org/2000/svg"
@@ -370,11 +370,11 @@ function F1Circuit() {
 
         {/* Turn Numbers */}
         {[
-          { n: 1, x: 510, y: 260 }, { n: 2, x: 450, y: 410 }, { n: 3, x: 480, y: 450 },
-          { n: 4, x: 450, y: 530 }, { n: 5, x: 580, y: 580 }, { n: 6, x: 720, y: 250 },
+          { n: 1, x: 510, y: 260 }, { n: 2, x: 450, y: 410 }, { n: 3, x: 490, y: 440 },
+          { n: 4, x: 465, y: 500 }, { n: 5, x: 585, y: 540 }, { n: 6, x: 720, y: 250 },
           { n: 7, x: 670, y: 140 }, { n: 8, x: 920, y: 280 }, { n: 9, x: 890, y: 580 },
-          { n: 10, x: 710, y: 510 }, { n: 11, x: 640, y: 590 }, { n: 12, x: 560, y: 520 },
-          { n: 13, x: 430, y: 620 }, { n: 14, x: 350, y: 560 }, { n: 15, x: 120, y: 250 },
+          { n: 10, x: 710, y: 560 }, { n: 11, x: 640, y: 640 }, { n: 12, x: 560, y: 560 },
+          { n: 13, x: 440, y: 665 }, { n: 14, x: 355, y: 600 }, { n: 15, x: 120, y: 270 },
           { n: 16, x: 240, y: 150 }, { n: 17, x: 250, y: 80 }, { n: 18, x: 330, y: 50 }
         ].map(t => (
           <g key={t.n} transform={`translate(${t.x}, ${t.y})`}>
@@ -386,37 +386,37 @@ function F1Circuit() {
         ))}
 
         {/* SECTOR LABELS */}
-        <text x="530" y="550" fill="#FF1E1E" fontSize="16" fontWeight="bold" transform="rotate(20, 530, 550)" fontFamily="sans-serif">SECTOR 1</text>
-        <text x="800" y="595" fill="#00A8FF" fontSize="16" fontWeight="bold" transform="rotate(-8, 800, 595)" fontFamily="sans-serif">SECTOR 2</text>
-        <text x="275" y="415" fill="#FFD700" fontSize="16" fontWeight="bold" transform="rotate(-45, 275, 415)" fontFamily="sans-serif">SECTOR 3</text>
+        <text x="540" y="510" fill="#FF1E1E" fontSize="16" fontWeight="bold" transform="rotate(20, 540, 510)" fontFamily="sans-serif">SECTOR 1</text>
+        <text x="800" y="600" fill="#00A8FF" fontSize="16" fontWeight="bold" transform="rotate(-8, 800, 600)" fontFamily="sans-serif">SECTOR 2</text>
+        <text x="275" y="440" fill="#FFD700" fontSize="16" fontWeight="bold" transform="rotate(-45, 275, 440)" fontFamily="sans-serif">SECTOR 3</text>
 
         {/* Dashed DRS Activation lines */}
-        <line x1="596" y1="535" x2="756" y2="319" stroke="#11CC11" strokeWidth="4" strokeDasharray="6,6" />
-        <line x1="384" y1="496" x2="214" y2="326" stroke="#11CC11" strokeWidth="4" strokeDasharray="6,6" />
+        <line x1="596" y1="500" x2="756" y2="319" stroke="#11CC11" strokeWidth="4" strokeDasharray="6,6" />
+        <line x1="384" y1="530" x2="214" y2="346" stroke="#11CC11" strokeWidth="4" strokeDasharray="6,6" />
         <line x1="390" y1="140" x2="450" y2="188" stroke="#11CC11" strokeWidth="4" strokeDasharray="6,6" />
 
         {/* SPEED TRAP */}
-        <circle cx="220" cy="360" r="6" fill="#FF00FF" />
-        <polyline points="220,360 160,360 160,450" stroke="#FF00FF" strokeWidth="2" fill="none" />
-        <rect x="85" y="450" width="150" height="50" rx="6" fill="#FF00FF" />
-        <text x="160" y="472" fill="#FFF" fontSize="18" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">SPEED</text>
-        <text x="160" y="492" fill="#FFF" fontSize="18" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">TRAP</text>
+        <circle cx="220" cy="380" r="6" fill="#FF00FF" />
+        <polyline points="220,380 160,380 160,470" stroke="#FF00FF" strokeWidth="2" fill="none" />
+        <rect x="85" y="470" width="150" height="50" rx="6" fill="#FF00FF" />
+        <text x="160" y="492" fill="#FFF" fontSize="18" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">SPEED</text>
+        <text x="160" y="512" fill="#FFF" fontSize="18" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">TRAP</text>
 
         {/* DRS DETECTION ZONE 1 */}
-        <circle cx="520" cy="470" r="6" fill="#11CC11" />
-        <polyline points="520,470 520,400 620,400" stroke="#11CC11" strokeWidth="2" fill="none" />
+        <circle cx="520" cy="460" r="6" fill="#11CC11" />
+        <polyline points="520,460 520,400 620,400" stroke="#11CC11" strokeWidth="2" fill="none" />
         <rect x="620" y="365" width="180" height="70" rx="6" fill="#11CC11" />
         <text x="710" y="388" fill="#FFF" fontSize="16" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">DRS</text>
         <text x="710" y="408" fill="#FFF" fontSize="16" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">DETECTION</text>
         <text x="710" y="428" fill="#FFF" fontSize="16" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">ZONE 1</text>
 
         {/* DRS DETECTION ZONE 2 */}
-        <circle cx="640" cy="550" r="6" fill="#11CC11" />
-        <polyline points="640,550 640,650 660,650" stroke="#11CC11" strokeWidth="2" fill="none" />
-        <rect x="660" y="615" width="180" height="70" rx="6" fill="#11CC11" />
-        <text x="750" y="638" fill="#FFF" fontSize="16" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">DRS</text>
-        <text x="750" y="658" fill="#FFF" fontSize="16" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">DETECTION</text>
-        <text x="750" y="678" fill="#FFF" fontSize="16" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">ZONE 2</text>
+        <circle cx="640" cy="605" r="6" fill="#11CC11" />
+        <polyline points="640,605 640,690 660,690" stroke="#11CC11" strokeWidth="2" fill="none" />
+        <rect x="660" y="655" width="180" height="70" rx="6" fill="#11CC11" />
+        <text x="750" y="678" fill="#FFF" fontSize="16" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">DRS</text>
+        <text x="750" y="698" fill="#FFF" fontSize="16" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">DETECTION</text>
+        <text x="750" y="718" fill="#FFF" fontSize="16" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">ZONE 2</text>
 
         {/* Start / Finish */}
         <g transform="translate(345, 125) rotate(39)">
