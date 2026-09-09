@@ -675,27 +675,44 @@ function ReadmissionPipeline() {
   const containerRef = React.useRef(null);
 
   React.useEffect(() => {
+    let frameId;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           let start = null;
-          const duration = 3500;
+          const fillDuration = 5000;   // slower sweep: 5 seconds
+          const holdDuration = 2000;   // pause at 73% for 2 seconds
+          const totalCycle = fillDuration + holdDuration;
+
           const animate = (ts) => {
             if (!start) start = ts;
-            const p = Math.min((ts - start) / duration, 1);
-            // Smooth easeOutCubic
-            const eased = 1 - Math.pow(1 - p, 3);
-            setProgress(eased);
-            if (p < 1) requestAnimationFrame(animate);
+            const elapsed = (ts - start) % totalCycle; // loop!
+
+            if (elapsed < fillDuration) {
+              const p = elapsed / fillDuration;
+              // Smooth easeInOutCubic for a nice sweep feel
+              const eased = p < 0.5
+                ? 4 * p * p * p
+                : 1 - Math.pow(-2 * p + 2, 3) / 2;
+              setProgress(eased);
+            } else {
+              // Hold at full
+              setProgress(1);
+            }
+
+            frameId = requestAnimationFrame(animate);
           };
-          requestAnimationFrame(animate);
+          frameId = requestAnimationFrame(animate);
           observer.disconnect();
         }
       },
       { threshold: 0.25 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (frameId) cancelAnimationFrame(frameId);
+    };
   }, []);
 
   const steps = [
