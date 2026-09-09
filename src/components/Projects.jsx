@@ -710,38 +710,31 @@ function ReadmissionPipeline() {
   const gaugeStart = 0.55;
   const targetRisk = 73;
 
-  // Gauge math
+  // Gauge math — using stroke-dasharray for perfect alignment
   const gaugeProgress = Math.max(0, Math.min(1, (progress - gaugeStart) / (1 - gaugeStart)));
-  // Smooth easeOutExpo for the needle
   const needleEased = gaugeProgress === 1 ? 1 : 1 - Math.pow(2, -10 * gaugeProgress);
   const riskValue = Math.round(needleEased * targetRisk);
-  // Needle angle: -90 (left/0%) to +90 (right/100%), we go to 73% of that range
-  const needleAngle = -90 + (needleEased * targetRisk / 100) * 180;
 
-  // SVG arc helper: compute point on arc at a given angle (0=left, 180=right)
-  const cx = 120, cy = 105, r = 70;
-  const arcPoint = (angleDeg) => {
-    const rad = (angleDeg - 180) * Math.PI / 180;
-    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-  };
+  // Arc geometry: semicircle from left to right
+  const cx = 100, cy = 90, radius = 65;
+  // Total arc length of semicircle = π * r
+  const totalArc = Math.PI * radius; // ~204
+  // How much of the arc to fill (73% of semicircle)
+  const fillLength = needleEased * (targetRisk / 100) * totalArc;
+  const dashOffset = totalArc - fillLength;
 
-  // Build the filled arc path from 0° to current risk%
-  const fillAngle = needleEased * targetRisk / 100 * 180;
-  const startPt = arcPoint(0);
-  const endPt = arcPoint(fillAngle);
-  const largeArc = fillAngle > 90 ? 1 : 0;
-  const filledArcPath = fillAngle > 0.5
-    ? `M ${startPt.x} ${startPt.y} A ${r} ${r} 0 ${largeArc} 1 ${endPt.x} ${endPt.y}`
-    : '';
+  // Needle angle: starts pointing left (-180°), sweeps to right (0°)
+  // At 0% risk → -180°, at 100% → 0°, at 73% → -180 + 131.4 = -48.6°
+  const needleAngleDeg = -180 + needleEased * (targetRisk / 100) * 180;
+  const needleAngleRad = (needleAngleDeg * Math.PI) / 180;
+  const needleLen = 48;
+  const nx = cx + needleLen * Math.cos(needleAngleRad);
+  const ny = cy + needleLen * Math.sin(needleAngleRad);
 
-  // Needle endpoint
-  const needleLen = 52;
-  const needleRad = (needleAngle - 90) * Math.PI / 180;
-  const needleX = cx + needleLen * Math.cos(needleRad);
-  const needleY = cy + needleLen * Math.sin(needleRad);
-
-  // Risk color
   const riskColor = riskValue > 60 ? '#EF4444' : riskValue > 35 ? '#EAB308' : '#22C55E';
+
+  // The semicircle arc path (left to right, counter-clockwise in SVG)
+  const arcPath = `M ${cx - radius} ${cy} A ${radius} ${radius} 0 0 1 ${cx + radius} ${cy}`;
 
   return (
     <div ref={containerRef} style={{
@@ -797,7 +790,6 @@ function ReadmissionPipeline() {
                 transform: visible ? 'translateX(0)' : 'translateX(-12px)',
                 transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
               }}>
-                {/* Step icon */}
                 <div style={{
                   width: '30px', height: '30px', borderRadius: '8px',
                   background: done ? 'rgba(155,109,255,0.2)' : 'rgba(30,37,53,0.8)',
@@ -809,7 +801,6 @@ function ReadmissionPipeline() {
                   transition: 'all 0.4s ease',
                   boxShadow: done ? '0 0 12px rgba(155,109,255,0.15)' : 'none',
                 }}>{step.abbr}</div>
-                {/* Step text */}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{
                     fontFamily: 'DM Mono, monospace', fontSize: '13px',
@@ -822,18 +813,14 @@ function ReadmissionPipeline() {
                     color: '#4F5B73', lineHeight: 1.4, marginTop: '1px',
                   }}>{step.sub}</div>
                 </div>
-                {/* Status indicator */}
                 <div style={{
                   width: '6px', height: '6px', borderRadius: '50%',
                   background: done ? '#22C55E' : '#1E2535',
                   border: done ? 'none' : '1px solid #2A3547',
-                  flexShrink: 0,
-                  transition: 'all 0.3s ease',
+                  flexShrink: 0, transition: 'all 0.3s ease',
                   boxShadow: done ? '0 0 6px rgba(34,197,94,0.4)' : 'none',
                 }} />
               </div>
-
-              {/* Connecting Line */}
               {i < steps.length - 1 && (
                 <div style={{
                   width: '1.5px', height: '14px', marginLeft: '14px',
@@ -850,125 +837,103 @@ function ReadmissionPipeline() {
       {/* Divider + Arrow */}
       <div style={{
         display: 'flex', flexDirection: 'column', alignItems: 'center',
-        margin: '12px 0 6px',
+        margin: '12px 0 2px',
         opacity: gaugeProgress > 0 ? 1 : 0.2,
         transition: 'opacity 0.5s ease',
       }}>
-        <div style={{
-          width: '1.5px', height: '12px',
-          background: 'linear-gradient(180deg, #9B6DFF, #4F7FFF)',
-          opacity: 0.5,
-        }} />
+        <div style={{ width: '1.5px', height: '10px', background: '#9B6DFF', opacity: 0.4 }} />
         <span style={{ color: '#9B6DFF', fontSize: '10px', lineHeight: 1 }}>▼</span>
       </div>
 
       {/* Risk Gauge */}
       <div style={{
         opacity: gaugeProgress > 0 ? 1 : 0,
-        transform: gaugeProgress > 0 ? 'scale(1)' : 'scale(0.9)',
+        transform: gaugeProgress > 0 ? 'scale(1)' : 'scale(0.85)',
         transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
       }}>
-        <svg viewBox="0 0 240 140" width="100%" style={{ display: 'block' }}>
-          {/* Gauge background arc (full semicircle, dim) */}
-          <path
-            d={`M ${arcPoint(0).x} ${arcPoint(0).y} A ${r} ${r} 0 1 1 ${arcPoint(180).x} ${arcPoint(180).y}`}
-            fill="none"
-            stroke="#1E2535"
-            strokeWidth="12"
-            strokeLinecap="round"
-          />
-
-          {/* Tick marks */}
-          {[0, 18, 36, 54, 72, 90, 108, 126, 144, 162, 180].map((deg) => {
-            const inner = arcPoint(deg);
-            const outerR = r + 8;
-            const rad = (deg - 180) * Math.PI / 180;
-            const outer = { x: cx + outerR * Math.cos(rad), y: cy + outerR * Math.sin(rad) };
-            return (
-              <line key={deg}
-                x1={inner.x} y1={inner.y}
-                x2={outer.x} y2={outer.y}
-                stroke="#2A3547" strokeWidth="1.5"
-              />
-            );
-          })}
-
-          {/* Filled arc — only up to current risk level */}
-          {filledArcPath && (
-            <path
-              d={filledArcPath}
-              fill="none"
-              stroke="url(#gaugeGradient)"
-              strokeWidth="12"
-              strokeLinecap="round"
-            />
-          )}
-
-          {/* Gradient definition */}
+        <svg viewBox="0 0 200 120" width="100%" style={{ display: 'block', overflow: 'visible' }}>
           <defs>
-            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient id="riskGaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#22C55E" />
-              <stop offset="45%" stopColor="#EAB308" />
-              <stop offset="80%" stopColor="#F97316" />
+              <stop offset="40%" stopColor="#EAB308" />
+              <stop offset="75%" stopColor="#F97316" />
               <stop offset="100%" stopColor="#EF4444" />
             </linearGradient>
           </defs>
 
-          {/* Glow behind needle tip */}
-          <circle
-            cx={needleX} cy={needleY} r="8"
-            fill={riskColor} opacity="0.15"
-          />
+          {/* Background track (dim, full semicircle) */}
+          <path d={arcPath} fill="none" stroke="#1E2535" strokeWidth="10" strokeLinecap="round" />
 
-          {/* Needle */}
-          <line
-            x1={cx} y1={cy}
-            x2={needleX} y2={needleY}
-            stroke="#E8EEFF"
-            strokeWidth="2"
+          {/* Colored fill arc — SAME path, masked with dasharray to only show up to needle */}
+          <path
+            d={arcPath}
+            fill="none"
+            stroke="url(#riskGaugeGrad)"
+            strokeWidth="10"
             strokeLinecap="round"
+            strokeDasharray={totalArc}
+            strokeDashoffset={dashOffset}
           />
-          {/* Needle center hub */}
-          <circle cx={cx} cy={cy} r="6" fill="#0D1230" stroke="#9B6DFF" strokeWidth="2" />
-          <circle cx={cx} cy={cy} r="2.5" fill="#9B6DFF" />
 
-          {/* Risk value text */}
-          <text x={cx} y={cy - 18} textAnchor="middle"
-            fontFamily="DM Mono, monospace" fontSize="28" fontWeight="700"
+          {/* Tick marks on the arc */}
+          {[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0].map((t, i) => {
+            const angle = -180 + t * 180;
+            const rad = (angle * Math.PI) / 180;
+            const ix = cx + (radius - 7) * Math.cos(rad);
+            const iy = cy + (radius - 7) * Math.sin(rad);
+            const ox = cx + (radius + 2) * Math.cos(rad);
+            const oy = cy + (radius + 2) * Math.sin(rad);
+            return <line key={i} x1={ix} y1={iy} x2={ox} y2={oy} stroke="#2A3547" strokeWidth="1" />;
+          })}
+
+          {/* Needle glow */}
+          <circle cx={nx} cy={ny} r="6" fill={riskColor} opacity="0.2" />
+
+          {/* Needle line */}
+          <line x1={cx} y1={cy} x2={nx} y2={ny}
+            stroke="#E8EEFF" strokeWidth="2" strokeLinecap="round" />
+
+          {/* Needle hub */}
+          <circle cx={cx} cy={cy} r="5" fill="#06091A" stroke="#9B6DFF" strokeWidth="1.5" />
+          <circle cx={cx} cy={cy} r="2" fill="#9B6DFF" />
+
+          {/* Risk percentage */}
+          <text x={cx} y={cy - 16} textAnchor="middle"
+            fontFamily="'DM Mono', monospace" fontSize="24" fontWeight="700"
             fill={riskColor}
           >{riskValue}%</text>
 
-          {/* Label */}
-          <text x={cx} y={cy + 24} textAnchor="middle"
-            fontFamily="DM Mono, monospace" fontSize="7" fill="#6B7A99"
-            letterSpacing="2"
+          {/* Label below hub */}
+          <text x={cx} y={cy + 17} textAnchor="middle"
+            fontFamily="'DM Mono', monospace" fontSize="6.5" fill="#6B7A99"
+            letterSpacing="1.5"
           >READMISSION RISK</text>
 
           {/* Zone labels */}
-          <text x="22" y={cy + 18} fontFamily="DM Mono, monospace" fontSize="7" fill="#22C55E" fontWeight="600">LOW</text>
-          <text x={cx - 5} y="25" fontFamily="DM Mono, monospace" fontSize="7" fill="#EAB308" fontWeight="600">MED</text>
-          <text x="205" y={cy + 18} fontFamily="DM Mono, monospace" fontSize="7" fill="#EF4444" fontWeight="600">HIGH</text>
+          <text x={cx - radius - 2} y={cy + 16} textAnchor="middle"
+            fontFamily="'DM Mono', monospace" fontSize="7" fill="#22C55E" fontWeight="600"
+          >LOW</text>
+          <text x={cx} y={cy - radius - 4} textAnchor="middle"
+            fontFamily="'DM Mono', monospace" fontSize="7" fill="#EAB308" fontWeight="600"
+          >MED</text>
+          <text x={cx + radius + 2} y={cy + 16} textAnchor="middle"
+            fontFamily="'DM Mono', monospace" fontSize="7" fill="#EF4444" fontWeight="600"
+          >HIGH</text>
         </svg>
       </div>
 
-      {/* Bottom stats bar */}
+      {/* Bottom stats */}
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         paddingTop: '10px', borderTop: '1px solid rgba(155,109,255,0.08)',
-        marginTop: '8px',
+        marginTop: '4px',
         opacity: gaugeProgress > 0.5 ? 1 : 0,
         transition: 'opacity 0.5s ease',
       }}>
-        <span style={{
-          color: '#4F5B73', fontFamily: 'DM Mono, monospace', fontSize: '8px',
-          letterSpacing: '0.5px',
-        }}>
+        <span style={{ color: '#4F5B73', fontFamily: 'DM Mono, monospace', fontSize: '8px', letterSpacing: '0.5px' }}>
           130 hospitals · UCI dataset
         </span>
-        <span style={{
-          fontFamily: 'DM Mono, monospace', fontSize: '9px', fontWeight: 600,
-          color: '#9B6DFF', letterSpacing: '0.5px',
-        }}>
+        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', fontWeight: 600, color: '#9B6DFF' }}>
           recall: 65%
         </span>
       </div>
