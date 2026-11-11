@@ -196,7 +196,7 @@ export default function Hero() {
   return (
     <>
       <style>{heroStyles}</style>
-      <section className="hero">
+      <section className="hero" id="home">
         <NeuralBackground />
         <div className="hero-content">
           <motion.p

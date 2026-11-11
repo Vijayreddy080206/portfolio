@@ -24,6 +24,7 @@ export const personalInfo = {
 // ─── 2. Typing Lines (Hero section) ───
 export const typingLines = [
   'I build real-time analytics engines.',
+  'I architect autonomous multi-agent AI pipelines.',
   'I predict patient readmission risk with ML.',
   'I turn 200,000 rows into insight.',
   'I simulate 8,000 race futures per lap.',
@@ -57,6 +58,25 @@ export const projects = [
     ],
     howIBuiltIt: `Engineered a Monte Carlo Tree Search engine with Deep-Branching Heuristics. Solved Python GIL bottleneck with concurrent.futures.ThreadPoolExecutor. Built dual Redis Pub/Sub pipes — raw FIA telemetry in, strategic commands out to live React dashboard. Back-tested against Australian, Chinese, and Japanese GP 2026 telemetry. Full fault tolerance: handles null telemetry, DNS events, dirty data — without dropping a frame.`,
     githubLink: 'https://github.com/Vijayreddy080206/f1-strategy-system',
+  },
+  {
+    id: 'content-maker',
+    title: 'Content Maker – Autonomous Multi-Agent YouTube Production Engine',
+    badge: 'AGENTIC AI',
+    badgeType: 'aiml',
+    category: 'Autonomous Multi-Agent Systems',
+    year: '2026',
+    tags: ['Python', 'LangGraph', 'LLMs (Groq)', 'Pydantic', 'FastAPI', 'React'],
+    featured: true,
+    whatISolved: `Creating publish-ready YouTube content requires research, scripting, critique, SEO, and thumbnail design — a slow, multi-person workflow. I built an autonomous multi-agent system in LangGraph that does all of it end-to-end with zero human bottleneck.`,
+    impactPoints: [
+      '7 specialized LLM agents in a cyclic pipeline',
+      '6-dimension LLM-critic quality rubric (1–5 scale)',
+      'Rubric score refined from 2/5 to 5/5 automatically',
+      'Parallel packaging + automated human escalation fallback',
+    ],
+    howIBuiltIt: `Architected a cyclic multi-agent LLM pipeline in LangGraph with specialized agents (Research, Script Writer, Critic, Script Doctor, SEO, Thumbnail, Repurposing) that converts a topic idea into a publish-ready YouTube package: script, SEO metadata, chapter timestamps, and thumbnail concepts. Implemented a 6-dimension LLM-critic quality rubric (1–5 scale) that scores each draft and automatically routes low-scoring drafts to a revision agent, with a 3-loop limit and automated human escalation. Added parallel content packaging, version-diff tracking, Pydantic-validated agent outputs, and isolated test suites for each agent, served through a FastAPI backend with a React dashboard.`,
+    githubLink: 'https://github.com/Vijayreddy080206',
   },
   {
     id: 'hospital-readmission',
@@ -121,6 +141,11 @@ export const projects = [
 // ─── 5. Skill Categories ───
 export const skillCategories = [
   {
+    name: 'Agentic AI & Multi-Agent Systems',
+    accent: 'blue',
+    skills: ['LangGraph', 'Agentic AI', 'Multi-Agent Swarms', 'LLMs', 'Prompt Engineering', 'Groq API', 'LLM-as-a-Judge', 'Pydantic Validation', 'FastAPI', 'Automated Revision Routing'],
+  },
+  {
     name: 'Data & Analytics',
     accent: 'teal',
     skills: ['Python', 'SQL', 'Power BI', 'Excel', 'Pandas', 'NumPy', 'Matplotlib', 'DAX', 'Power Query', 'Jupyter Notebook'],
@@ -133,7 +158,7 @@ export const skillCategories = [
   {
     name: 'Backend & Data Engineering',
     accent: 'teal',
-    skills: ['Node.js', 'Express.js', 'Redis Pub/Sub', 'WebSocket', 'concurrent.futures', 'REST APIs', 'MySQL', 'MongoDB', 'Mongoose ODM'],
+    skills: ['Python', 'FastAPI', 'Node.js', 'Express.js', 'Redis Pub/Sub', 'WebSocket', 'concurrent.futures', 'REST APIs', 'MySQL', 'MongoDB', 'Mongoose ODM'],
   },
   {
     name: 'Frontend & Visualization',
@@ -324,6 +349,7 @@ export const timelineEvents = [
 
 // ─── 8. Navigation Links ───
 export const navLinks = [
+  { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },

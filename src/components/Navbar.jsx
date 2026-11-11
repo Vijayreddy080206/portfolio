@@ -8,7 +8,7 @@ const navStyles = `
     padding: 16px 0; transition: all 0.4s ease;
   }
   .navbar.scrolled {
-    background: rgba(8,12,20,0.88); backdrop-filter: blur(12px);
+    background: rgba(8, 12, 20, 0.88); backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid #1E2535;
     padding: 12px 0;
   }
@@ -19,11 +19,8 @@ const navStyles = `
   }
   .nav-inner {
     max-width: 1200px; margin: 0 auto; padding: 0 24px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 24px;
-    color: #4F7FFF; text-decoration: none; letter-spacing: -1px; user-select: none;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
   }
   .nav-center {
     display: flex; align-items: center; gap: 32px; list-style: none;
@@ -39,7 +36,10 @@ const navStyles = `
     content: ''; position: absolute; bottom: -6px; left: 0; right: 0;
     height: 2px; background: #4F7FFF; border-radius: 1px;
   }
-  .nav-right { display: flex; align-items: center; gap: 16px; position: relative; }
+  .nav-right {
+    display: flex; align-items: center; gap: 16px;
+    position: absolute; right: 24px;
+  }
   .nav-cv-btn {
     font-family: 'DM Mono', monospace; font-size: 13px; color: #4F7FFF;
     background: transparent; border: 1.5px solid #4F7FFF; padding: 8px 18px;
@@ -47,20 +47,8 @@ const navStyles = `
     align-items: center; gap: 6px;
   }
   .nav-cv-btn:hover {
-    background: rgba(79,127,255,0.08); transform: translateY(-1px);
+    background: rgba(79, 127, 255, 0.08); transform: translateY(-1px);
   }
-  .nav-dropdown {
-    position: absolute; top: calc(100% + 8px); right: 0; min-width: 200px;
-    background: #0D1230; border: 1px solid #1E2535; border-radius: 8px;
-    overflow: hidden; z-index: 1001;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-  }
-  .nav-dropdown a {
-    display: block; padding: 10px 20px;
-    font-family: 'DM Mono', monospace; font-size: 13px; color: #FFFFFF;
-    text-decoration: none; transition: all 0.15s ease;
-  }
-  .nav-dropdown a:hover { background: #1E2535; color: #4F7FFF; }
   .hamburger {
     display: none; flex-direction: column; gap: 5px; background: none;
     border: none; padding: 4px; z-index: 1001;
@@ -79,8 +67,10 @@ const navStyles = `
     gap: 32px; z-index: 999;
   }
   .mobile-menu .nav-link { font-size: 18px; }
-  @media (max-width: 768px) {
+  @media (max-width: 820px) {
+    .nav-inner { justify-content: flex-end; }
     .nav-center { display: none; }
+    .nav-right { position: static; }
     .nav-cv-btn { display: none; }
     .hamburger { display: flex; }
   }
@@ -89,12 +79,15 @@ const navStyles = `
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState('home');
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      if (window.scrollY < 200) {
+        setActiveSection('home');
+      }
       const total = document.body.scrollHeight - window.innerHeight;
       setScrollProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
     };
@@ -118,12 +111,14 @@ export default function Navbar() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-
-
   const scrollTo = (e, href) => {
     e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (href === '#home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
     setMobileOpen(false);
   };
 
@@ -138,17 +133,6 @@ export default function Navbar() {
       >
         <div className="nav-progress" style={{ width: `${scrollProgress}%` }} />
         <div className="nav-inner">
-          <a
-            className="nav-logo"
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          >
-            VV
-          </a>
-
           <ul className="nav-center">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -167,17 +151,16 @@ export default function Navbar() {
             <a className="nav-cv-btn" href="/vijay-cv.pdf" download>
               Download CV
             </a>
+            <button
+              className={`hamburger ${mobileOpen ? 'open' : ''}`}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
           </div>
-
-          <button
-            className={`hamburger ${mobileOpen ? 'open' : ''}`}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span />
-            <span />
-            <span />
-          </button>
         </div>
       </motion.nav>
 

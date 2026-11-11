@@ -996,6 +996,653 @@ function ReadmissionCard({ project }) {
   );
 }
 
+/* ─── Cute Chibi Agent Bot Toy Mascot Component ─── */
+function AgentToyBot({ x, y, angle = 0, state = 'normal', tool = 'idea', label = '', scale = 1, accentColor }) {
+  const isWarning = state === 'warning';
+  const isSuccess = state === 'success';
+  const eyeColor = isWarning ? '#F59E0B' : isSuccess ? '#10B981' : (accentColor || '#38BDF8');
+  const botBorder = isWarning ? '#F59E0B' : isSuccess ? '#10B981' : (accentColor || '#4F7FFF');
+
+  return (
+    <g transform={`translate(${x}, ${y}) scale(${scale}) rotate(${angle})`} style={{ transition: 'transform 0.08s linear' }}>
+      {/* Jet thruster ion flame underneath */}
+      <g transform="translate(0, 13)">
+        <ellipse cx="0" cy="0" rx="4.5" ry="1.6" fill={eyeColor} opacity="0.7" />
+        <polygon points="-3,0 3,0 0,7" fill={isWarning ? '#F59E0B' : isSuccess ? '#10B981' : '#60A5FA'} opacity="0.85" />
+        <circle cx="0" cy="5" r="1.2" fill="#FFFFFF" opacity="0.9" />
+      </g>
+
+      {/* Shadow under bot */}
+      <ellipse cx="0" cy="18" rx="8" ry="2.2" fill="rgba(0,0,0,0.5)" />
+
+      {/* Main Chibi Robot Body */}
+      <rect
+        x="-12"
+        y="-12"
+        width="24"
+        height="24"
+        rx="8"
+        fill="#0B132B"
+        stroke={botBorder}
+        strokeWidth="1.8"
+        style={{ filter: `drop-shadow(0 0 8px ${botBorder}88)` }}
+      />
+
+      {/* Cute Head Antenna with Pulsing Light */}
+      <line x1="0" y1="-12" x2="0" y2="-18" stroke={botBorder} strokeWidth="1.5" strokeLinecap="round" />
+      <circle cx="0" cy="-19" r="2.5" fill={eyeColor} />
+      <circle cx="0" cy="-19" r="4.5" fill={eyeColor} opacity="0.35" />
+
+      {/* Robot Ears / Side Nodes */}
+      <rect x="-14.5" y="-6" width="2.5" height="7" rx="1.2" fill={botBorder} />
+      <rect x="12" y="-6" width="2.5" height="7" rx="1.2" fill={botBorder} />
+
+      {/* Visor Screen */}
+      <rect x="-9" y="-8" width="18" height="9.5" rx="4" fill="#04060F" stroke="rgba(255,255,255,0.15)" strokeWidth="0.6" />
+
+      {/* Cute Expressive Chibi Eyes */}
+      {isWarning ? (
+        // Alert / Worried expression ( > < )
+        <g stroke={eyeColor} strokeWidth="1.6" strokeLinecap="round">
+          <line x1="-6" y1="-5" x2="-2.5" y2="-3" />
+          <line x1="-6" y1="-3" x2="-2.5" y2="-5" />
+          <line x1="2.5" y1="-3" x2="6" y2="-5" />
+          <line x1="2.5" y1="-5" x2="6" y2="-3" />
+        </g>
+      ) : isSuccess ? (
+        // Happy triumphant eyes ( ^ ^ )
+        <g stroke={eyeColor} strokeWidth="1.6" strokeLinecap="round" fill="none">
+          <path d="M -6 -2.5 Q -4.2 -6 -2.5 -2.5" />
+          <path d="M 2.5 -2.5 Q 4.2 -6 6 -2.5" />
+        </g>
+      ) : (
+        // Bright open digital eyes ( • • ) with catchlight
+        <g>
+          <circle cx="-4" cy="-3.5" r="1.8" fill={eyeColor} />
+          <circle cx="-3.3" cy="-4.2" r="0.7" fill="#FFFFFF" />
+          <circle cx="4" cy="-3.5" r="1.8" fill={eyeColor} />
+          <circle cx="4.7" cy="-4.2" r="0.7" fill="#FFFFFF" />
+        </g>
+      )}
+
+      {/* Chest Core Reactor */}
+      <circle cx="0" cy="5.5" r="2.2" fill={eyeColor} opacity="0.95" />
+      <circle cx="0" cy="5.5" r="4" fill={eyeColor} opacity="0.25" />
+
+      {/* Tool / Payload in Hand */}
+      {tool === 'idea' && (
+        <g transform="translate(11, 2)">
+          <circle r="4.5" fill="#FBBF24" opacity="0.3" />
+          <text x="0" y="3.5" fontSize="9" textAnchor="middle">💡</text>
+        </g>
+      )}
+      {tool === 'search' && (
+        <g transform="translate(11, 2)">
+          <circle r="4.5" fill="#38BDF8" opacity="0.3" />
+          <text x="0" y="3.5" fontSize="9" textAnchor="middle">🔍</text>
+        </g>
+      )}
+      {tool === 'quill' && (
+        <g transform="translate(11, 2)">
+          <circle r="4.5" fill="#818CF8" opacity="0.3" />
+          <text x="0" y="3.5" fontSize="9" textAnchor="middle">✍️</text>
+        </g>
+      )}
+      {tool === 'scales' && (
+        <g transform="translate(11, 2)">
+          <circle r="4.5" fill={isWarning ? '#F59E0B' : '#10B981'} opacity="0.3" />
+          <text x="0" y="3.5" fontSize="9" textAnchor="middle">⚖️</text>
+        </g>
+      )}
+      {tool === 'firstaid' && (
+        <g transform="translate(11, 2)">
+          <circle r="4.5" fill="#F43F5E" opacity="0.3" />
+          <text x="0" y="3.5" fontSize="9" textAnchor="middle">🩺</text>
+        </g>
+      )}
+      {tool === 'package' && (
+        <g transform="translate(11, 2)">
+          <circle r="5" fill="#10B981" opacity="0.3" />
+          <text x="0" y="4" fontSize="10" textAnchor="middle">📦</text>
+        </g>
+      )}
+      {tool === 'rocket' && (
+        <g transform="translate(10, 2)">
+          <text x="0" y="3.5" fontSize="8" textAnchor="middle">🚀</text>
+        </g>
+      )}
+      {tool === 'palette' && (
+        <g transform="translate(10, 2)">
+          <text x="0" y="3.5" fontSize="8" textAnchor="middle">🎨</text>
+        </g>
+      )}
+      {tool === 'scissors' && (
+        <g transform="translate(10, 2)">
+          <text x="0" y="3.5" fontSize="8" textAnchor="middle">✂️</text>
+        </g>
+      )}
+
+      {/* Floating Status Pill Banner */}
+      {label && (
+        <g transform="translate(0, -28)">
+          <rect
+            x={-(label.length * 3.5 + 8)}
+            y="-7.5"
+            width={label.length * 7 + 16}
+            height="14"
+            rx="4.5"
+            fill="#06091A"
+            stroke={botBorder}
+            strokeWidth="0.9"
+            style={{ filter: `drop-shadow(0 0 5px ${botBorder}66)` }}
+          />
+          <text
+            x="0"
+            y="2.5"
+            textAnchor="middle"
+            fontFamily="'DM Mono', monospace"
+            fontSize="7"
+            fill={eyeColor}
+            fontWeight="700"
+            letterSpacing="0.4px"
+          >
+            {label}
+          </text>
+        </g>
+      )}
+    </g>
+  );
+}
+
+/* ─── Content Maker: Autonomous Multi-Agent Swarm Visual ─── */
+function ContentMakerVisual() {
+  const [progress, setProgress] = React.useState(0);
+  const containerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    let frameId;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          let start = null;
+          const cycleDuration = 8000;
+          const holdDuration = 2500;
+          const totalCycle = cycleDuration + holdDuration;
+
+          const animate = (ts) => {
+            if (!start) start = ts;
+            const elapsed = (ts - start) % totalCycle;
+            if (elapsed < cycleDuration) {
+              setProgress(elapsed / cycleDuration);
+            } else {
+              setProgress(1);
+            }
+            frameId = requestAnimationFrame(animate);
+          };
+          frameId = requestAnimationFrame(animate);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => {
+      observer.disconnect();
+      if (frameId) cancelAnimationFrame(frameId);
+    };
+  }, []);
+
+  const p = progress;
+
+  // Node active states
+  const isInput = p < 0.16;
+  const isResearch = p >= 0.12 && p < 0.32;
+  const isWriter = p >= 0.28 && p < 0.48;
+  const isCritic1 = p >= 0.44 && p < 0.58;
+  const isDoctor = p >= 0.54 && p < 0.68;
+  const isCritic2 = p >= 0.64 && p < 0.74;
+  const isPackaging = p >= 0.72 && p < 0.90;
+  const isDone = p >= 0.90;
+
+  // Subtle hovering bob for the toy agent
+  const bob = Math.sin(p * Math.PI * 18) * 2.2;
+
+  // Compute Rubric Score & Color
+  let rubricScore = '5/5';
+  let rubricColor = '#10B981';
+  if (p >= 0.46 && p < 0.58) {
+    rubricScore = '2/5';
+    rubricColor = '#EF4444';
+  } else if (p >= 0.58 && p < 0.70) {
+    const t = (p - 0.58) / 0.12;
+    rubricScore = t > 0.6 ? '5/5' : '3/5';
+    rubricColor = t > 0.6 ? '#10B981' : '#F59E0B';
+  } else if (p < 0.46) {
+    rubricScore = '—';
+    rubricColor = '#6B7A99';
+  } else {
+    rubricScore = '5/5';
+    rubricColor = '#10B981';
+  }
+
+  // Trajectory calculation for the Main Agent Toy Bot
+  let mainBot = null;
+  let subBots = [];
+
+  if (p < 0.16) {
+    // Stage 1: Input (35, 55) -> Research (125, 55)
+    const t = p / 0.16;
+    mainBot = {
+      x: 35 + t * 90,
+      y: 55 + bob,
+      angle: 0,
+      state: 'normal',
+      tool: 'idea',
+      label: 'AGENT: INGEST',
+      scale: 1,
+    };
+  } else if (p < 0.32) {
+    // Stage 2: Research (125, 55) -> Writer (225, 55)
+    const t = (p - 0.16) / 0.16;
+    mainBot = {
+      x: 125 + t * 100,
+      y: 55 + bob,
+      angle: 0,
+      state: 'normal',
+      tool: 'search',
+      label: 'AGENT: 14 SOURCES',
+      scale: 1,
+    };
+  } else if (p < 0.46) {
+    // Stage 3: Writer (225, 55) -> Critic (315, 115)
+    const t = (p - 0.32) / 0.14;
+    mainBot = {
+      x: 225 + t * 90,
+      y: 55 + t * 60 + bob,
+      angle: 16,
+      state: 'normal',
+      tool: 'quill',
+      label: 'AGENT: 1,480w DRAFT',
+      scale: 1,
+    };
+  } else if (p < 0.58) {
+    // Stage 4: Critic (315, 115) -> Doctor (195, 115) [Auto-revision route]
+    const t = (p - 0.46) / 0.12;
+    const arcY = -Math.sin(t * Math.PI) * 18;
+    mainBot = {
+      x: 315 - t * 120,
+      y: 115 + arcY + bob,
+      angle: -10,
+      state: 'warning',
+      tool: 'scales',
+      label: 'CRITIC 2/5 → DOCTOR',
+      scale: 1,
+    };
+  } else if (p < 0.70) {
+    // Stage 5: Doctor (195, 115) -> Critic (315, 115) [Upgraded to 5/5!]
+    const t = (p - 0.58) / 0.12;
+    const arcY = Math.sin(t * Math.PI) * 18;
+    const isPassing = t > 0.6;
+    mainBot = {
+      x: 195 + t * 120,
+      y: 115 + arcY + bob,
+      angle: 10,
+      state: isPassing ? 'success' : 'normal',
+      tool: isPassing ? 'scales' : 'firstaid',
+      label: isPassing ? 'RUBRIC 5/5 APPROVED ✓' : 'AGENT: RE-WRITING',
+      scale: 1,
+    };
+  } else if (p < 0.88) {
+    // Stage 6: Parallel Dispatch!
+    mainBot = {
+      x: 195,
+      y: 115 + bob,
+      angle: 0,
+      state: 'success',
+      tool: 'package',
+      label: 'PARALLEL SWARM DISPATCH',
+      scale: 1.05,
+    };
+
+    // 3 Mini Worker Agent Bots fly to packaging stations in parallel!
+    const t = (p - 0.70) / 0.18;
+    subBots = [
+      {
+        x: 195 + t * (75 - 195),
+        y: 115 + t * (185 - 115) + bob,
+        angle: -18,
+        tool: 'rocket',
+        label: 'SEO BOT',
+        state: 'normal',
+        accentColor: '#10B981',
+        scale: 0.82,
+      },
+      {
+        x: 195 + t * (185 - 195),
+        y: 115 + t * (185 - 115) + bob,
+        angle: 0,
+        tool: 'palette',
+        label: 'THUMB BOT',
+        state: 'normal',
+        accentColor: '#6366F1',
+        scale: 0.82,
+      },
+      {
+        x: 195 + t * (295 - 195),
+        y: 115 + t * (185 - 115) + bob,
+        angle: 18,
+        tool: 'scissors',
+        label: 'SHORTS BOT',
+        state: 'normal',
+        accentColor: '#A855F7',
+        scale: 0.82,
+      },
+    ];
+  } else {
+    // Stage 7: Complete!
+    mainBot = {
+      x: 195,
+      y: 115 + bob,
+      angle: 0,
+      state: 'success',
+      tool: 'package',
+      label: 'YOUTUBE PACKAGE COMPLETE ✓',
+      scale: 1.08,
+    };
+    subBots = [
+      { x: 75, y: 185 + bob, angle: 0, tool: 'rocket', label: 'TAGS OK', state: 'success', accentColor: '#10B981', scale: 0.82 },
+      { x: 185, y: 185 + bob, angle: 0, tool: 'palette', label: 'THUMB OK', state: 'success', accentColor: '#6366F1', scale: 0.82 },
+      { x: 295, y: 185 + bob, angle: 0, tool: 'scissors', label: 'CLIPS OK', state: 'success', accentColor: '#A855F7', scale: 0.82 },
+    ];
+  }
+
+  // Live status stream message
+  let logText = '';
+  if (p < 0.16) {
+    logText = 'Agent Bot: Ingesting topic prompt "Building Agent Swarms"...';
+  } else if (p < 0.32) {
+    logText = 'Agent Bot: Synthesizing 14 verified knowledge sources...';
+  } else if (p < 0.46) {
+    logText = 'Agent Bot: Drafting 3-act YouTube script (1,480 words)...';
+  } else if (p < 0.58) {
+    logText = 'Critic Evaluator: Rubric 2/5 (Weak Hook) → Flying to Doctor';
+  } else if (p < 0.70) {
+    logText = 'Script Doctor: Hook revised (Loop 1) → Rubric 5/5 APPROVED ✓';
+  } else if (p < 0.88) {
+    logText = 'Parallel Swarm: 3 Mini Bots packaging SEO, Thumbnails & Shorts...';
+  } else {
+    logText = 'YouTube Production Package Complete · Zero human intervention';
+  }
+
+  return (
+    <div ref={containerRef} style={{
+      background: '#06091A',
+      borderRadius: '16px',
+      padding: '20px 16px 14px',
+      border: '1px solid rgba(155,109,255,0.25)',
+      width: '100%',
+      maxWidth: '380px',
+      margin: '0 auto',
+      boxShadow: '0 0 40px rgba(155,109,255,0.08)',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      {/* Top Header */}
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        marginBottom: '14px', paddingBottom: '10px',
+        borderBottom: '1px solid rgba(155,109,255,0.12)'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{
+            color: '#9B6DFF', fontFamily: 'DM Mono, monospace',
+            fontSize: '10px', letterSpacing: '2px', fontWeight: 600
+          }}>
+            LANGGRAPH SWARM
+          </span>
+          <span style={{
+            background: isDone ? 'rgba(16,185,129,0.15)' : 'rgba(79,127,255,0.15)',
+            border: `1px solid ${isDone ? '#10B981' : '#4F7FFF'}`,
+            color: isDone ? '#10B981' : '#4F7FFF',
+            fontFamily: 'DM Mono, monospace',
+            fontSize: '8px', padding: '1px 6px', borderRadius: '4px', fontWeight: 600
+          }}>
+            {isDone ? 'COMPLETE' : 'ACTIVE'}
+          </span>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{
+            fontFamily: 'DM Mono, monospace', fontSize: '9px',
+            color: rubricColor, fontWeight: 700
+          }}>
+            RUBRIC: {rubricScore}
+          </span>
+          <span style={{
+            width: '6px', height: '6px', borderRadius: '50%',
+            background: isDone ? '#10B981' : '#9B6DFF',
+            display: 'inline-block',
+            animation: 'livePulse 1.2s infinite'
+          }} />
+        </div>
+      </div>
+
+      {/* Interactive Agent Swarm SVG Environment */}
+      <svg viewBox="0 0 360 230" width="100%" height="auto" style={{ display: 'block', overflow: 'visible' }}>
+        <defs>
+          <filter id="swarmGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+
+        {/* Blueprint Circuit Grid Lines */}
+        <line x1="35" y1="55" x2="125" y2="55" stroke="rgba(79,127,255,0.2)" strokeWidth="1.5" strokeDasharray="3,3" />
+        <line x1="125" y1="55" x2="225" y2="55" stroke="rgba(155,109,255,0.2)" strokeWidth="1.5" strokeDasharray="3,3" />
+        <line x1="225" y1="55" x2="315" y2="115" stroke="rgba(245,158,11,0.2)" strokeWidth="1.5" strokeDasharray="3,3" />
+        
+        {/* Cyclic Loop between Critic (315, 115) and Doctor (195, 115) */}
+        <path d="M 315 110 Q 255 88 195 110" fill="none" stroke="rgba(244,63,94,0.3)" strokeWidth="1.5" strokeDasharray="3,3" />
+        <path d="M 195 120 Q 255 142 315 120" fill="none" stroke="rgba(16,185,129,0.3)" strokeWidth="1.5" strokeDasharray="3,3" />
+
+        {/* Parallel Packaging Lines */}
+        <line x1="195" y1="115" x2="75" y2="185" stroke="rgba(16,185,129,0.2)" strokeWidth="1.5" strokeDasharray="3,3" />
+        <line x1="195" y1="115" x2="185" y2="185" stroke="rgba(99,102,241,0.2)" strokeWidth="1.5" strokeDasharray="3,3" />
+        <line x1="195" y1="115" x2="295" y2="185" stroke="rgba(168,85,247,0.2)" strokeWidth="1.5" strokeDasharray="3,3" />
+
+        {/* Active Flow Energy Rays */}
+        {p < 0.18 && (
+          <line x1="35" y1="55" x2={mainBot?.x || 35} y2="55" stroke="#4F7FFF" strokeWidth="2.5" />
+        )}
+        {p >= 0.16 && p < 0.36 && (
+          <line x1="125" y1="55" x2={mainBot?.x || 125} y2="55" stroke="#9B6DFF" strokeWidth="2.5" />
+        )}
+        {p >= 0.32 && p < 0.48 && (
+          <line x1="225" y1="55" x2={mainBot?.x || 225} y2={mainBot?.y || 55} stroke="#F59E0B" strokeWidth="2.5" />
+        )}
+
+        {/* ── 1. INPUT NODE (35, 55) ── */}
+        <g transform="translate(35, 55)">
+          <circle r={isInput ? "16" : "13"} fill="#0D1230" stroke={isInput ? "#4F7FFF" : "#1E2535"} strokeWidth="1.5" />
+          {isInput && <circle r="20" fill="none" stroke="#4F7FFF" opacity="0.3" strokeWidth="1" />}
+          <text y="-2" textAnchor="middle" fontSize="10">💡</text>
+          <text y="24" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="8" fill={isInput ? "#4F7FFF" : "#6B7A99"} fontWeight="600">INPUT</text>
+        </g>
+
+        {/* ── 2. RESEARCH AGENT (125, 55) ── */}
+        <g transform="translate(125, 55)">
+          <circle r={isResearch ? "18" : "15"} fill="#0D1230" stroke={isResearch ? "#38BDF8" : "#1E2535"} strokeWidth="1.5" />
+          {isResearch && <circle r="22" fill="none" stroke="#38BDF8" opacity="0.3" strokeWidth="1" />}
+          <text y="-2" textAnchor="middle" fontSize="10">🔍</text>
+          <text y="24" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="8" fill={isResearch ? "#38BDF8" : "#6B7A99"} fontWeight="600">RESEARCH</text>
+          <text y="32" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="6.5" fill="#4F5B73">14 sources</text>
+        </g>
+
+        {/* ── 3. SCRIPT WRITER AGENT (225, 55) ── */}
+        <g transform="translate(225, 55)">
+          <circle r={isWriter ? "18" : "15"} fill="#0D1230" stroke={isWriter ? "#818CF8" : "#1E2535"} strokeWidth="1.5" />
+          {isWriter && <circle r="22" fill="none" stroke="#818CF8" opacity="0.3" strokeWidth="1" />}
+          <text y="-2" textAnchor="middle" fontSize="10">✍️</text>
+          <text y="24" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="8" fill={isWriter ? "#818CF8" : "#6B7A99"} fontWeight="600">WRITER</text>
+          <text y="32" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="6.5" fill="#4F5B73">1,480 words</text>
+        </g>
+
+        {/* ── 4. SCRIPT DOCTOR AGENT (195, 115) ── */}
+        <g transform="translate(195, 115)">
+          <circle r={isDoctor ? "18" : "14"} fill="#0D1230" stroke={isDoctor ? "#F43F5E" : "#1E2535"} strokeWidth="1.5" />
+          {isDoctor && <circle r="22" fill="none" stroke="#F43F5E" opacity="0.4" strokeWidth="1" />}
+          <text y="-2" textAnchor="middle" fontSize="10">🩺</text>
+          <text y="23" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="8" fill={isDoctor ? "#F43F5E" : "#6B7A99"} fontWeight="600">DOCTOR</text>
+          <text y="31" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="6.5" fill="#4F5B73">Loop 1/3</text>
+        </g>
+
+        {/* ── 5. CRITIC AGENT (JUDGE) (315, 115) ── */}
+        <g transform="translate(315, 115)">
+          <circle r={isCritic1 || isCritic2 ? "20" : "16"} fill="#0D1230" stroke={rubricColor} strokeWidth="1.8" />
+          {(isCritic1 || isCritic2) && <circle r="25" fill="none" stroke={rubricColor} opacity="0.4" strokeWidth="1" />}
+          <text y="-2" textAnchor="middle" fontSize="11">⚖️</text>
+          <text y="24" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="8" fill={rubricColor} fontWeight="700">CRITIC</text>
+          <text y="33" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="7" fill={rubricColor} fontWeight="600">{rubricScore}</text>
+        </g>
+
+        {/* ── 6. SEO AGENT (75, 185) ── */}
+        <g transform="translate(75, 185)">
+          <circle r={isPackaging ? "16" : "13"} fill="#0D1230" stroke={isPackaging || isDone ? "#10B981" : "#1E2535"} strokeWidth="1.5" />
+          <text y="-1" textAnchor="middle" fontSize="9">🚀</text>
+          <text y="22" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="8" fill={isPackaging || isDone ? "#10B981" : "#6B7A99"} fontWeight="600">SEO</text>
+          <text y="30" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="6.5" fill="#4F5B73">Keywords</text>
+        </g>
+
+        {/* ── 7. THUMBNAIL AGENT (185, 185) ── */}
+        <g transform="translate(185, 185)">
+          <circle r={isPackaging ? "16" : "13"} fill="#0D1230" stroke={isPackaging || isDone ? "#6366F1" : "#1E2535"} strokeWidth="1.5" />
+          <text y="-1" textAnchor="middle" fontSize="9">🎨</text>
+          <text y="22" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="8" fill={isPackaging || isDone ? "#6366F1" : "#6B7A99"} fontWeight="600">THUMB</text>
+          <text y="30" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="6.5" fill="#4F5B73">3 Concepts</text>
+        </g>
+
+        {/* ── 8. REPURPOSER AGENT (295, 185) ── */}
+        <g transform="translate(295, 185)">
+          <circle r={isPackaging ? "16" : "13"} fill="#0D1230" stroke={isPackaging || isDone ? "#A855F7" : "#1E2535"} strokeWidth="1.5" />
+          <text y="-1" textAnchor="middle" fontSize="9">✂️</text>
+          <text y="22" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="8" fill={isPackaging || isDone ? "#A855F7" : "#6B7A99"} fontWeight="600">SHORTS</text>
+          <text y="30" textAnchor="middle" fontFamily="'DM Mono', monospace" fontSize="6.5" fill="#4F5B73">Chapters</text>
+        </g>
+
+        {/* ── MINI WORKER ASSISTANT AGENT BOTS (Parallel Swarm) ── */}
+        {subBots.map((sb, i) => (
+          <AgentToyBot
+            key={i}
+            x={sb.x}
+            y={sb.y}
+            angle={sb.angle}
+            tool={sb.tool}
+            label={sb.label}
+            state={sb.state}
+            scale={sb.scale}
+            accentColor={sb.accentColor}
+          />
+        ))}
+
+        {/* ── MAIN AUTONOMOUS AGENT TOY CHARACTER! ── */}
+        {mainBot && (
+          <AgentToyBot
+            x={mainBot.x}
+            y={mainBot.y}
+            angle={mainBot.angle}
+            tool={mainBot.tool}
+            label={mainBot.label}
+            state={mainBot.state}
+            scale={mainBot.scale}
+          />
+        )}
+      </svg>
+
+      {/* Real-Time Live Activity Feed Console */}
+      <div style={{
+        marginTop: '10px',
+        padding: '8px 12px',
+        background: '#0D1230',
+        borderRadius: '8px',
+        border: '1px solid rgba(155,109,255,0.15)',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px'
+      }}>
+        <span style={{ color: '#9B6DFF', fontSize: '9px', fontFamily: 'DM Mono, monospace' }}>▸</span>
+        <span style={{
+          fontFamily: 'DM Mono, monospace',
+          fontSize: '9.5px',
+          color: isDone ? '#10B981' : '#94A3B8',
+          letterSpacing: '0.2px',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          flex: 1
+        }}>
+          {logText}
+        </span>
+        <span style={{
+          width: '4px', height: '10px', background: '#9B6DFF',
+          display: 'inline-block', animation: 'livePulse 0.8s infinite'
+        }} />
+      </div>
+
+      {/* Bottom Telemetry Bar */}
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        paddingTop: '10px', borderTop: '1px solid rgba(155,109,255,0.08)',
+        marginTop: '10px'
+      }}>
+        <span style={{ color: '#4F5B73', fontFamily: 'DM Mono, monospace', fontSize: '8px', letterSpacing: '0.5px' }}>
+          7 LLM AGENTS · LANGGRAPH
+        </span>
+        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', fontWeight: 600, color: '#9B6DFF' }}>
+          100% AUTONOMOUS
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function ContentMakerCard({ project }) {
+  return (
+    <motion.div
+      className="proj-card aiml"
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, ease: 'easeOut' }}
+      viewport={{ once: true, margin: '-80px' }}
+    >
+      <div className="proj-two-col">
+        <div>
+          <span className="proj-badge aiml">{project.badge}</span>
+          <h3 className="proj-title">{project.title}</h3>
+          <div className="proj-tags">
+            {project.tags.map((t) => <span key={t} className="proj-tag">{t}</span>)}
+          </div>
+          <p className="proj-label blue">THE PROBLEM</p>
+          <p className="proj-desc">{project.whatISolved}</p>
+          <p className="proj-label blue">KEY IMPACT</p>
+          <div className="proj-chips">
+            {project.impactPoints.map((p, i) => (
+              <span key={i} className="proj-chip blue">{p}</span>
+            ))}
+          </div>
+          <p className="proj-label blue">HOW I BUILT IT</p>
+          <p className="proj-how">{project.howIBuiltIt}</p>
+          <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="proj-github">
+            <FaGithub /> View on GitHub
+          </a>
+        </div>
+        <div className="proj-visual">
+          <ContentMakerVisual />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 function IPLCard({ project }) {
   return (
     <motion.div
@@ -1087,6 +1734,7 @@ function MiniCard({ project }) {
 /* ─── Main Projects Section ─── */
 export default function Projects() {
   const f1 = projects.find((p) => p.id === 'f1-strategy');
+  const contentMaker = projects.find((p) => p.id === 'content-maker');
   const readmission = projects.find((p) => p.id === 'hospital-readmission');
   const ipl = projects.find((p) => p.id === 'ipl-analytics');
   const boutique = projects.find((p) => p.id === 'hoshitha-boutique');
@@ -1108,6 +1756,7 @@ export default function Projects() {
 
           <div className="proj-list">
             {f1 && <F1Card project={f1} />}
+            {contentMaker && <ContentMakerCard project={contentMaker} />}
             {readmission && <ReadmissionCard project={readmission} />}
             {ipl && <IPLCard project={ipl} />}
             {boutique && <MiniCard project={boutique} />}
