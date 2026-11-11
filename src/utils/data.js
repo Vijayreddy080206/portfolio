@@ -76,7 +76,7 @@ export const projects = [
       'Parallel packaging + automated human escalation fallback',
     ],
     howIBuiltIt: `Architected a cyclic multi-agent LLM pipeline in LangGraph with specialized agents (Research, Script Writer, Critic, Script Doctor, SEO, Thumbnail, Repurposing) that converts a topic idea into a publish-ready YouTube package: script, SEO metadata, chapter timestamps, and thumbnail concepts. Implemented a 6-dimension LLM-critic quality rubric (1–5 scale) that scores each draft and automatically routes low-scoring drafts to a revision agent, with a 3-loop limit and automated human escalation. Added parallel content packaging, version-diff tracking, Pydantic-validated agent outputs, and isolated test suites for each agent, served through a FastAPI backend with a React dashboard.`,
-    githubLink: 'https://github.com/Vijayreddy080206',
+    githubLink: 'https://github.com/Vijayreddy080206/youtube-script-writting-agent-',
   },
   {
     id: 'hospital-readmission',
